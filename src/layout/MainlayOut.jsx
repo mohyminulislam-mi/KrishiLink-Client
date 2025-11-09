@@ -7,9 +7,15 @@ import Footer from "../shared/Footer";
 const MainlayOut = () => {
   return (
     <div>
-      <Header></Header>
-      <Outlet></Outlet>
-      <Footer></Footer>
+      <header className="bg-base-100">
+        <Header />
+      </header>
+      <div className="w-11/12 mx-auto">
+        <Outlet></Outlet>
+      </div>
+      <footer className="bg-white">
+        <Footer />
+      </footer>
     </div>
   );
 };
