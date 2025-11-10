@@ -3,6 +3,7 @@ import Slider from "../../components/Slider";
 import WorkProcedure from "../../components/WorkProcedure";
 import Blogs from "../../components/Blogs";
 import About from "../../components/About";
+import Testimonial from "../../components/Testimonial";
 
 const Home = () => {
   return (
@@ -15,6 +16,8 @@ const Home = () => {
       <WorkProcedure></WorkProcedure>
       {/* Blog page */}
       <Blogs></Blogs>
+      {/* Testimonial  */}
+      <Testimonial></Testimonial>
     </div>
   );
 };
