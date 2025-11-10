@@ -23,13 +23,16 @@ const blogPosts = [
 const Blogs = () => {
   return (
     <section className="bg-white py-12 px-6 md:px-20">
-      <h2 className="text-4xl font-bold text-center text-green-700 mb-4">
-        Agro News
-      </h2>
-      <p className="text-center text-gray-600 mb-10">
-        Stay ahead with fresh insights on organic farming, soil health, pest
-        control, and certification.
-      </p>
+      <div className="text-center">
+        <h2 className="text-4xl font-bold   text-green-700 mb-3">Agro News</h2>
+        <div className="flex justify-center mb-3">
+          <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-green-600 to-green-400"></div>
+        </div>
+        <p className="  text-gray-600 mb-10">
+          Stay ahead with fresh insights on organic farming, soil health, pest
+          control, and certification.
+        </p>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {blogPosts.map((post, index) => (
           <div
