@@ -6,6 +6,10 @@ import Registration from "../Auth/Registration";
 import ForgetPassword from "../Auth/ForgetPassword";
 import MyProfile from "../Auth/MyProfile";
 import NotFound from "../pages/NotFound";
+import AddCrop from "../pages/Crops/AddCrops";
+import AllCrops from "../pages/Crops/AllCrops";
+import MyInterests from "../pages/MyInterests";
+import MyPosts from "../pages/MyPosts";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +33,22 @@ const router = createBrowserRouter([
       {
         path: "/my-profile",
         Component: MyProfile,
+      },
+      {
+        path: "/add-crops",
+        Component: AddCrop,
+      },
+      {
+        path: "/all-crops",
+        Component: AllCrops,
+      },
+      {
+        path: "/my-interests",
+        Component: MyInterests,
+      },
+      {
+        path: "/my-posts",
+        Component: MyPosts,
       },
     ],
   },

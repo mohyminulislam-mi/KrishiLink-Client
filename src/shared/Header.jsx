@@ -33,7 +33,7 @@ const Header = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to={"/"}>
+        <NavLink to={"/all-crops"}>
           <PiPlantBold />
           All Crops
         </NavLink>
@@ -41,20 +41,20 @@ const Header = () => {
       {user && (
         <>
           <li>
-            <NavLink to={"/"}>
+            <NavLink to={"/add-crops"}>
               {" "}
               <FaPenToSquare />
               Add Crops
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/"}>
+            <NavLink to={"/my-posts"}>
               <MdAddCircleOutline />
               My Posts
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/"}>
+            <NavLink to={"/my-interests"}>
               <CiGrid42 />
               My interests
             </NavLink>
@@ -115,7 +115,7 @@ const Header = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow z-10"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10"
             >
               <Link
                 to={"/my-profile"}
