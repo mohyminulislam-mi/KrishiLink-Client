@@ -5,11 +5,13 @@ import Login from "../Auth/Login";
 import Registration from "../Auth/Registration";
 import ForgetPassword from "../Auth/ForgetPassword";
 import MyProfile from "../Auth/MyProfile";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainlayOut />,
+    errorElement: <NotFound />,
     children: [
       { index: true, Component: Home },
       {
@@ -20,11 +22,11 @@ const router = createBrowserRouter([
         path: "/registration",
         Component: Registration,
       },
-       {
+      {
         path: "/forget-password",
         Component: ForgetPassword,
       },
-        {
+      {
         path: "/my-profile",
         Component: MyProfile,
       },
