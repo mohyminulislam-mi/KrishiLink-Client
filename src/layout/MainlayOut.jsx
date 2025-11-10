@@ -12,7 +12,7 @@ const MainlayOut = () => {
       <div>
         <Outlet></Outlet>
       </div>
-      <footer className="bg-white">
+      <footer className="bg-base-200">
         <Footer />
       </footer>
       <ToastContainer

@@ -5,14 +5,13 @@ import { AuthContext } from "../context/AuthContext";
 import { IoExitOutline, IoHome } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { PiPlantBold } from "react-icons/pi";
-import { FaOpencart, FaPenToSquare } from "react-icons/fa6";
+import { FaPenToSquare } from "react-icons/fa6";
 import { CiGrid42 } from "react-icons/ci";
 import { ToastContainer, toast } from "react-toastify";
+import { MdAddCircleOutline } from "react-icons/md";
 
 const Header = () => {
-  const location = useLocation()
   const { user, singOutUser } = use(AuthContext);
-  const navigate = useNavigate();
 
   const handleSingOut = () => {
     singOutUser()
@@ -50,7 +49,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink to={"/"}>
-              <FaOpencart />
+              <MdAddCircleOutline />
               My Posts
             </NavLink>
           </li>
@@ -94,7 +93,9 @@ const Header = () => {
         </div>
         <Link to={"/"} className="flex items-center gap-2">
           <img src={Logo} alt="Logo" className="w-8" />
-          <span className="text-3xl font-semibold">KrishiLink</span>
+          <span className="text-3xl font-semibold text-green-700">
+            KrishiLink
+          </span>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
