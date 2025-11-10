@@ -1,25 +1,66 @@
-import React from "react";
-import { Link, NavLink } from "react-router";
+import React, { use } from "react";
+import { Link, NavLink, useNavigate } from "react-router";
 import Logo from "../assets/logo.png";
+import { AuthContext } from "../context/AuthContext";
+import { IoExitOutline, IoHome } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+import { PiPlantBold } from "react-icons/pi";
+import { FaOpencart, FaPenToSquare } from "react-icons/fa6";
+import { CiGrid42 } from "react-icons/ci";
+import { ToastContainer, toast } from "react-toastify";
 
 const Header = () => {
+  const { user, singOutUser } = use(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSingOut = () => {
+    singOutUser()
+      .then(() => {
+        toast.success("Logout successful");
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const links = (
     <>
       <li>
-        <NavLink to={"/"}>Home</NavLink>
+        <NavLink to={"/"}>
+          <IoHome />
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/"}>All Crops</NavLink>
+        <NavLink to={"/"}>
+          <PiPlantBold />
+          All Crops
+        </NavLink>
       </li>
-      <li>
-        <NavLink to={"/"}>Add Crops</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/"}>My Posts</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/"}>My interests</NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to={"/"}>
+              {" "}
+              <FaPenToSquare />
+              Add Crops
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/"}>
+              <FaOpencart />
+              My Posts
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/"}>
+              <CiGrid42 />
+              My interests
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -59,36 +100,45 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              {/* {user ? ( */}
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
-              {/* // ) : ( */}
-              //{" "}
-              <button className="btn btn-outline btn-success">Success</button>
-              {/* // )} */}
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt="User" src={user?.photoURL} />
+              </div>
             </div>
+            <ul
+              tabIndex="-1"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <Link
+                to={"/profile"}
+                className="font-bold cursor-pointer flex items-center gap-1 justify-center hover:bg-green-50"
+              >
+                <CgProfile /> Profile
+              </Link>
+              <button
+                className="text-red-500 font-semibold cursor-pointer flex items-center gap-1 justify-center mt-2 hover:bg-green-50"
+                onClick={handleSingOut}
+              >
+                <IoExitOutline /> Sing Out
+              </button>
+            </ul>
           </div>
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a className="justify-between">Profile</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
+        ) : (
+          <div className="space-x-3">
+            <Link to={"/login"} className="btn-primary">
+              Login
+            </Link>
+            <Link to={"/registration"} className="btn-primary">
+              Singup
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -11,3 +11,11 @@
 body {
   @apply bg-green-50
 }
+
+.btn-primary {
+  @apply btn bg-green-500 text-white border-0 outline-0 
+}
+
+.btn-primary:hover {
+  @apply bg-green-500
+}
