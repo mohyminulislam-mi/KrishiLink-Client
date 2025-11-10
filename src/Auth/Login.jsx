@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { singInEmailPassword, singInWithGoogle } = use(AuthContext);
@@ -22,6 +23,7 @@ const Login = () => {
     singInEmailPassword(email, password)
       .then((result) => {
         console.log("user details", result);
+        toast.success("login successful");
         e.target.reset();
         navigate(location.state || "/");
       })
@@ -63,9 +65,9 @@ const Login = () => {
           required
         />
         <div className="text-right py-4">
-          <a className="text-blue-600 underline" href="#">
+          <Link to={"/forget-password"} className="text-blue-600 underline">
             Forgot Password
-          </a>
+          </Link>
         </div>
         <button
           type="submit"
@@ -76,9 +78,9 @@ const Login = () => {
       </form>
       <p className="text-center mt-4">
         Don’t have an account?{" "}
-        <a href="#" className="text-blue-500 underline">
+        <Link to={"/registration"} className="text-blue-500 underline">
           Signup
-        </a>
+        </Link>
       </p>
       <div className="text-center my-4 ">
         <span className="font-bold">Or</span>

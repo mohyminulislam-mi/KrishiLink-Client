@@ -3,6 +3,8 @@ import MainlayOut from "../layout/MainlayOut";
 import Home from "../pages/home/Home";
 import Login from "../Auth/Login";
 import Registration from "../Auth/Registration";
+import ForgetPassword from "../Auth/ForgetPassword";
+import MyProfile from "../Auth/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         Component: Registration,
+      },
+       {
+        path: "/forget-password",
+        Component: ForgetPassword,
+      },
+        {
+        path: "/my-profile",
+        Component: MyProfile,
       },
     ],
   },

@@ -68,7 +68,7 @@ const Registration = () => {
   };
   return (
     <div className="hero min-h-screen py-[60px]">
-      <title>Game Share | Register Now</title>
+      <title>KrishiLink | Register Now</title>
       <div className="card w-[90%] lg:w-[25%] md:w-[60%] bg-base-100 shrink-0 shadow-2xl">
         <div className="card-body">
           <h1 className="text-3xl font-semibold text-center mb-5">Register</h1>
