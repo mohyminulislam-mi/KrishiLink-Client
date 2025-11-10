@@ -27,9 +27,6 @@ const Footer = () => {
             </a>
             <a className="hover:text-slate-600 transition" href="#">
               Careers
-              <span className="text-xs text-white bg-indigo-600 rounded-md ml-2 px-2 py-1">
-                We’re hiring!
-              </span>
             </a>
             <a className="hover:text-slate-600 transition" href="#">
               Contact us
@@ -48,15 +45,13 @@ const Footer = () => {
               The latest news, articles, and resources, sent to your inbox
               weekly.
             </p>
-            <div className="flex items-center justify-center gap-2 p-2 rounded-md bg-indigo-50">
+            <div className="flex items-center justify-center gap-2 p-2 rounded-md bg-green-50">
               <input
-                className="focus:ring-2 ring-indigo-600 outline-none w-full max-w-64 py-2 rounded px-2"
+                className="focus:ring-2 ring-green-600 outline-none w-full max-w-64 py-2 rounded px-2"
                 type="email"
                 placeholder="Enter your email"
               />
-              <button className="bg-indigo-600 px-4 py-2 text-white rounded">
-                Subscribe
-              </button>
+              <button className="btn-primary">Subscribe</button>
             </div>
           </div>
         </div>
@@ -73,6 +68,7 @@ const Footer = () => {
             <a
               href="https://www.linkedin.com/in/mohyminulislam/"
               target="blank"
+              className="font-bold text-green-600"
             >
               Mohyminul Islam
             </a>{" "}

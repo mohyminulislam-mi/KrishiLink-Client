@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import Logo from "../assets/logo.png";
 import { AuthContext } from "../context/AuthContext";
 import { IoExitOutline, IoHome } from "react-icons/io5";
@@ -10,6 +10,7 @@ import { CiGrid42 } from "react-icons/ci";
 import { ToastContainer, toast } from "react-toastify";
 
 const Header = () => {
+  const location = useLocation()
   const { user, singOutUser } = use(AuthContext);
   const navigate = useNavigate();
 
@@ -113,7 +114,7 @@ const Header = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow z-10"
             >
               <Link
                 to={"/my-profile"}
@@ -122,7 +123,7 @@ const Header = () => {
                 <CgProfile /> Profile
               </Link>
               <button
-                className="text-red-500 font-semibold cursor-pointer flex items-center gap-1 justify-center mt-2 hover:bg-green-50"
+                className="text-white font-semibold cursor-pointer flex items-center gap-1 justify-center mt-2 bg-green-600 py-2 rounded"
                 onClick={handleSingOut}
               >
                 <IoExitOutline /> Sing Out
