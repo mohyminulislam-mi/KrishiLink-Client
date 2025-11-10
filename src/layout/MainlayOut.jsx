@@ -1,5 +1,3 @@
-import React from "react";
-import Home from "../pages/home/Home";
 import Header from "../shared/Header";
 import { Outlet } from "react-router";
 import Footer from "../shared/Footer";
@@ -11,7 +9,7 @@ const MainlayOut = () => {
       <header className="bg-base-100">
         <Header />
       </header>
-      <div className="w-11/12 mx-auto">
+      <div>
         <Outlet></Outlet>
       </div>
       <footer className="bg-white">
