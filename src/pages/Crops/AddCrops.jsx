@@ -3,16 +3,64 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
 
 const AddCrop = () => {
+  const { user } = useContext(AuthContext);
+
+  const handleAddCrop = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const type = e.target.type.value;
+    const quantity = parseInt(e.target.quantity.value);
+    const unit = e.target.unit.value;
+    const price = parseFloat(e.target.price.value);
+    const description = e.target.description.value;
+    const address = e.target.address.value;
+    const image = e.target.image.value;
+
+    const newProduct = {
+      name,
+      type,
+      quantity,
+      unit,
+      price,
+      description,
+      address,
+      image,
+    };
+    console.log(newProduct);
+
+    // post data into server
+    fetch("http://localhost:3000/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("after update", data);
+        Swal.fire({
+          title: "Crop added!",
+          icon: "success",
+          draggable: true,
+        });
+        e.target.reset();
+      });
+  };
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-xl my-10">
-      <h2 className="text-2xl font-semibold text-center mb-6 text-green-700">
-        Add New Crop
-      </h2>
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-green-700 mb-2">Add New Crop</h2>
+        <div className="flex justify-center mb-2">
+          <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-green-600 to-green-400"></div>
+        </div>
+        <p className="  text-gray-600 mb-8">
+          You can add your all type Crops. and this crop visible for our
+          website!
+        </p>
+      </div>
 
-      <form
-        //   onSubmit={handleAddCrop}
-        className="space-y-4"
-      >
+      <form onSubmit={handleAddCrop} className="space-y-4">
         {/* Crop Name */}
         <div>
           <label className="block font-medium mb-1">Crop Name</label>
@@ -24,14 +72,13 @@ const AddCrop = () => {
             className="input input-bordered w-full border-gray-300 rounded-lg p-2 outline-none border"
           />
         </div>
-
         {/* Type */}
         <div>
           <label className="block font-medium mb-1">Type</label>
           <select
             name="type"
             required
-            className="input input-bordered w-full border-gray-300 rounded-lg p-2 outline-none border"
+            className="input input-bordered w-full border-gray-300 rounded-lg p-2 outline-none border cursor-pointer"
           >
             <option value="">Select Type</option>
             <option value="Grain">Grain</option>
@@ -40,19 +87,21 @@ const AddCrop = () => {
           </select>
         </div>
 
-        {/* Price & Unit */}
+        {/* Quantity & Unit */}
         <div className="grid grid-cols-2 gap-4">
+          {/* Quantity */}
           <div>
-            <label className="block font-medium mb-1">Price per Unit</label>
+            <label className="block font-medium mb-1">Quantity</label>
             <input
               type="number"
-              name="pricePerUnit"
+              name="quantity"
               required
               min="1"
-              placeholder="e.g 100"
+              placeholder="e.g. 100"
               className="input input-bordered w-full border-gray-300 rounded-lg p-2 outline-none border"
             />
           </div>
+          {/* Unit like kg/Ton  */}
           <div>
             <label className="block font-medium mb-1">Unit</label>
             <select
@@ -69,16 +118,15 @@ const AddCrop = () => {
             </select>
           </div>
         </div>
-
-        {/* Quantity */}
+        {/* make your price  */}
         <div>
-          <label className="block font-medium mb-1">Quantity</label>
+          <label className="block font-medium mb-1">Price per Unit</label>
           <input
             type="number"
-            name="quantity"
+            name="price"
             required
             min="1"
-            placeholder="e.g. 100"
+            placeholder="e.g 100"
             className="input input-bordered w-full border-gray-300 rounded-lg p-2 outline-none border"
           />
         </div>
@@ -100,9 +148,9 @@ const AddCrop = () => {
           <label className="block font-medium mb-1">Present Address</label>
           <input
             type="text"
-            name="location"
+            name="address"
             required
-            placeholder="e.g. Dinajpur"
+            placeholder="e.g. Birampur, Dinajpur"
             className="input input-bordered w-full border-gray-300 rounded-lg p-2 outline-none border"
           />
         </div>
@@ -111,7 +159,7 @@ const AddCrop = () => {
         <div>
           <label className="block font-medium mb-1">Image URL</label>
           <input
-            type="text"
+            type="url"
             name="image"
             required
             placeholder="https://example.com/potato.jpg"
@@ -122,7 +170,7 @@ const AddCrop = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition"
+          className="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition cursor-pointer"
         >
           Add Crop
         </button>
