@@ -1,11 +1,23 @@
-import React, { Suspense, use, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import AllCropData from "../../components/AllCropData";
-const cropsPromise = fetch("http://localhost:3000/products").then((res) =>
-  res.json()
-);
+
 const AllCrops = () => {
-  const crops = use(cropsPromise);
+  const [crops, setCrops] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setCrops(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching crops:", error);
+        setLoading(false);
+      });
+  }, []);
 
   const [sort, setSort] = useState("none");
 
@@ -70,10 +82,12 @@ const AllCrops = () => {
         </div>
       </div>
 
-      {/* All Crops data  */}
-      <Suspense fallback={"Loading...."}>
-        <AllCropData sortCrops={sortCrops}></AllCropData>
-      </Suspense>
+      {/* Loading state */}
+      {loading ? (
+        <div className="text-center text-green-600">Loading...</div>
+      ) : (
+        <AllCropData sortCrops={sortCrops} />
+      )}
     </div>
   );
 };

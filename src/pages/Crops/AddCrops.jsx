@@ -1,9 +1,11 @@
 import { useState, useContext } from "react";
-import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const AddCrop = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleAddCrop = (e) => {
     e.preventDefault();
@@ -25,6 +27,10 @@ const AddCrop = () => {
       description,
       address,
       image,
+      owner: {
+        ownerEmail: user.email,
+        ownerName: user.displayName,
+      },
     };
     console.log(newProduct);
 
@@ -38,13 +44,9 @@ const AddCrop = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("after update", data);
-        Swal.fire({
-          title: "Crop added!",
-          icon: "success",
-          draggable: true,
-        });
+        toast.success("Added successful!");
         e.target.reset();
+        navigate("/all-crops");
       });
   };
   return (
