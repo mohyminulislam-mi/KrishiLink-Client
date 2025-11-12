@@ -40,7 +40,10 @@ const AllCropData = ({ sortCrops }) => {
             </p>
 
             <div className="pb-3 pt-1 w-full">
-              <Link className="bg-green-600 text-white px-4 py-2.5 rounded hover:bg-green-700 transition cursor-pointer w-full">
+              <Link
+                to={`/crop-details/${crop._id}`}
+                className="bg-green-600 text-white px-4 py-2.5 rounded hover:bg-green-700 transition cursor-pointer w-full"
+              >
                 See Details
               </Link>
             </div>

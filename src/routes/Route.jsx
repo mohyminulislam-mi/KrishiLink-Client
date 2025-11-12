@@ -10,6 +10,7 @@ import AddCrop from "../pages/Crops/AddCrops";
 import AllCrops from "../pages/Crops/AllCrops";
 import MyInterests from "../pages/MyInterests";
 import MyPosts from "../pages/MyPosts";
+import CropDetails from "../pages/Crops/CropsDetails";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,12 @@ const router = createBrowserRouter([
       {
         path: "/my-posts",
         Component: MyPosts,
+      },
+      {
+        path: "/crop-details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/products/${params.id}`),
+        Component: CropDetails,
       },
     ],
   },
