@@ -14,7 +14,7 @@ const MyProfile = () => {
           <div className="mx-auto">
             <img
               src={user?.photoURL}
-              alt=""
+              alt="User"
               className="w-[150px] h-[150px] rounded-full object-cover"
             />
           </div>
