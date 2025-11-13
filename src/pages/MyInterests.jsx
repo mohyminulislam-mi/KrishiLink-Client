@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const MyInterests = () => {
+  const { user } = useContext(AuthContext);
   const [crops, setCrops] = useState([]);
   const [loading, setLoading] = useState(true);
 

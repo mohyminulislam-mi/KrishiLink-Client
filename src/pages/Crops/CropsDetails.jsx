@@ -29,9 +29,9 @@ const CropDetails = () => {
     fetch("https://krishi-link-server-eta.vercel.app/interests")
       .then((res) => res.json())
       .then((data) => {
-  const filtered = data.filter((item) => item.cropId?.toString() === id);
-  setInterests(filtered);
-})
+        const filtered = data.filter((item) => item.cropId?.toString() === id);
+        setInterests(filtered);
+      })
 
       .catch((err) => console.error(err));
   }, [id]);
@@ -49,8 +49,8 @@ const CropDetails = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             cropId: id,
-            name: user.displayName,
-            email: user.email,
+            name: user?.displayName,
+            email: user?.email,
             quantity: Number(quantity),
             units,
             message,
