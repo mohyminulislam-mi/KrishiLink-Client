@@ -5,7 +5,9 @@ const MyInterests = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://krishi-link-server-eta.vercel.app/interests")
+    fetch(
+      `https://krishi-link-server-eta.vercel.app/interests?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCrops(data);
