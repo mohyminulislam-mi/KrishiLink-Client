@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router";
 import AllCropData from "../../components/AllCropData";
+import SearchNotFound from "../../components/SearchNotFound";
+import Loading from "../../loading/Loading";
 
 const AllCrops = () => {
   const [crops, setCrops] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("none");
 
   useEffect(() => {
     fetch("http://localhost:3000/products")
@@ -19,33 +22,39 @@ const AllCrops = () => {
       });
   }, []);
 
-  const [sort, setSort] = useState("none");
+  // Search filter
+  const term = search.trim().toLowerCase();
+  const searched = term
+    ? crops.filter((crop) => crop.name?.toLowerCase().includes(term))
+    : crops;
 
-  const sortCrops = [...crops].sort((a, b) => {
+  // Sort filter
+  const sorted = [...searched].sort((a, b) => {
     if (sort === "low-asc") return a.price - b.price;
     if (sort === "high-desc") return b.price - a.price;
     return 0;
   });
 
+  // my final data here
+  const finalCrops = sorted;
+
   return (
     <div className="w-11/12 mx-auto">
       <div className="text-center mt-10 mb-20">
-        <h2 className="text-4xl font-bold   text-green-700 mb-3">All Crops</h2>
-        <div className="flex justify-center mb-3">
-          <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-green-600 to-green-400"></div>
-        </div>
-        <p className="  text-gray-600 mb-10">
-          All crops are Original, Organic , Authentic. You can choose according
-          to your needs.
+        <h2 className="text-4xl font-bold text-green-700 mb-3">All Crops</h2>
+        <p className="text-gray-600 mb-10">
+          All crops are Original, Organic, Authentic. Choose according to your
+          needs.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
-        <div className="col-span-2 mx-auto lg:mx-0">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+        <div className="col-span-2">
           <h1 className="font-bold text-green-600 text-xl">
-            ({crops.length}) Available
+            ({finalCrops.length}) Available
           </h1>
         </div>
+        {/* Search box  */}
         <div className="col-span-8 mx-auto flex items-center border pl-4 gap-2 bg-white border-gray-500/30 h-[46px] rounded-full overflow-hidden max-w-md w-full ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +66,10 @@ const AllCrops = () => {
             <path d="M13 3C7.489 3 3 7.489 3 13s4.489 10 10 10a9.95 9.95 0 0 0 6.322-2.264l5.971 5.971a1 1 0 1 0 1.414-1.414l-5.97-5.97A9.95 9.95 0 0 0 23 13c0-5.511-4.489-10-10-10m0 2c4.43 0 8 3.57 8 8s-3.57 8-8 8-8-3.57-8-8 3.57-8 8-8" />
           </svg>
           <input
-            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            type="search"
+            placeholder="Search Apps"
             className="w-full h-full outline-none text-sm text-gray-500"
           />
           <button
@@ -67,26 +79,33 @@ const AllCrops = () => {
             Search
           </button>
         </div>
-        <div className="col-span-2 mx-auto lg:mx-0">
-          <label>
-            <select
-              className="select select-bordered cursor-pointer"
-              value={sort}
-              onChange={(e) => setSort(e.target.value)}
-            >
-              <option value="none">Sort by price</option>
-              <option value="low-asc">Low - High</option>
-              <option value="high-desc">High - Low</option>
-            </select>
-          </label>
+        {/*  Sorting data */}
+        <div className="col-span-2">
+          <select
+            className="select select-bordered cursor-pointer"
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+          >
+            <option value="none">Sort by price</option>
+            <option value="low-asc">Low - High</option>
+            <option value="high-desc">High - Low</option>
+          </select>
         </div>
       </div>
 
-      {/* Loading state */}
+      {/* Loading state and set data */}
       {loading ? (
-        <div className="text-center text-green-600">Loading...</div>
+        <Loading></Loading>
+      ) : finalCrops.length ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8">
+          {finalCrops.map((crop) => (
+            <AllCropData key={crop.id} crop={crop} />
+          ))}
+        </div>
       ) : (
-        <AllCropData sortCrops={sortCrops} />
+        <div className="p-10">
+          <SearchNotFound />
+        </div>
       )}
     </div>
   );
