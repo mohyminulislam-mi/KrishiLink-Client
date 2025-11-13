@@ -1,16 +1,27 @@
-# React + Vite
+# 🌾 KrishiLink – Farmers’ Growth & Connection Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📘 Overview  
+**KrishiLink** is a React-based client-side web application designed to connect farmers, share knowledge, and provide access to agricultural resources.  
+It helps farmers collaborate, learn modern techniques, and stay updated with agricultural innovations.
 
-Currently, two official plugins are available:
+## 🚀 Features  
+- Secure Login and Registration (Farmer & General User)
+- Personal Dashboard for managing posts and data
+- Crop information management (add, update, delete)
+- Community forum for Q&A and discussions
+- Notifications for new updates, events, and trends
+- Fully responsive design (desktop, tablet, mobile)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack  
+- **Frontend:** React.js  
+- **Routing:** React Router  
+- **State Management:** React Context / Redux (if used)  
+- **Styling:** Tailwind CSS / CSS3 / Sass  
+- **Data Fetching:** Fetch API / Axios  
+- **Build Tool:** Create React App or Vite  
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧩 Prerequisites  
+- Node.js (v16 or later)  
+- npm or yarn  
+- A running backend API (Express.js / Node.js)  
+- Environment variables properly configured  
