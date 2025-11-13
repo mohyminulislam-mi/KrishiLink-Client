@@ -11,7 +11,8 @@ import AllCrops from "../pages/Crops/AllCrops";
 import MyInterests from "../pages/MyInterests";
 import MyPosts from "../pages/MyPosts";
 import CropDetails from "../pages/Crops/CropsDetails";
-import UpdateCrop from "../pages/Crops/UpdateCrop";
+import PrivateRoute from "./PrivateRoute";
+import InterestTableData from "../components/InterestTableData";
 
 const router = createBrowserRouter([
   {
@@ -30,33 +31,65 @@ const router = createBrowserRouter([
       },
       {
         path: "/forget-password",
-        Component: ForgetPassword,
+        element: (
+          <PrivateRoute>
+            <ForgetPassword></ForgetPassword>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-profile",
-        Component: MyProfile,
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/add-crops",
-        Component: AddCrop,
+        element: (
+          <PrivateRoute>
+            <AddCrop></AddCrop>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all-crops",
-        Component: AllCrops,
+        element: <AllCrops></AllCrops>,
       },
       {
         path: "/my-interests",
-        Component: MyInterests,
+        element: (
+          <PrivateRoute>
+            <MyInterests></MyInterests>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-posts",
-        Component: MyPosts,
+        element: (
+          <PrivateRoute>
+            <MyPosts></MyPosts>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/interest-table ",
+        element: (
+          <PrivateRoute>
+            <InterestTableData></InterestTableData>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/crop-details/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/products/${params.id}`),
-        Component: CropDetails,
+        element: (
+          <PrivateRoute>
+            <CropDetails></CropDetails>
+          </PrivateRoute>
+        ),
       },
     ],
   },

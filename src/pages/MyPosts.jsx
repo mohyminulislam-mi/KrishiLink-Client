@@ -12,7 +12,6 @@ const MyPosts = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCrop, setSelectedCrop] = useState(null);
 
-  // load data
   useEffect(() => {
     fetch(`http://localhost:3000/products?email=${user?.email}`)
       .then((res) => res.json())
@@ -28,7 +27,6 @@ const MyPosts = () => {
 
   if (loading) return <Loading />;
 
-  // delete crop
   const handleDelete = async (_id) => {
     const confirmDelete = await Swal.fire({
       title: "Are you sure?",
@@ -55,56 +53,73 @@ const MyPosts = () => {
 
   return (
     <div className="w-11/12 mx-auto py-8">
-      <h2 className="text-2xl font-bold mb-6 text-center">My Crops</h2>
+      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+        My Crops
+      </h2>
 
-      <table className="min-w-full border border-gray-200 text-sm sm:text-base">
-        <thead className="bg-green-500 text-white">
-          <tr>
-            <th className="px-5 py-3 text-start">Image</th>
-            <th className="px-5 py-3 text-start">Name</th>
-            <th className="px-5 py-3 text-start">Category</th>
-            <th className="px-5 py-3 text-start">Price</th>
-            <th className="px-5 py-3 text-start">Quantity</th>
-            <th className="px-5 py-3 text-start">Date</th>
-            <th className="px-5 py-3 text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((crop) => (
-            <tr key={crop._id} className="border-b border-gray-200">
-              <td className="px-4 py-2">
-                <img src={crop.image} alt="Image" className="h-16 w-22" />
-              </td>
-              <td className="px-4 py-2">{crop.name}</td>
-              <td className="px-4 py-2">{crop.type}</td>
-              <td className="px-4 py-2">৳{crop.price}</td>
-              <td className="px-4 py-2">
-                {crop.quantity} {crop.unit}
-              </td>
-              <td className="px-4 py-2">{crop.created_at_display}</td>
-              <td className="px-4 py-2 text-center">
-                <div className="flex justify-center gap-2">
-                  <button
-                    onClick={() => setSelectedCrop(crop)}
-                    className="btn btn-outline btn-success cursor-pointer hover:bg-green-500 hover:text-white"
-                  >
-                    <MdOutlineEditNote className="text-xl" /> Update
-                  </button>
-
-                  <button
-                    onClick={() => handleDelete(crop._id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded flex items-center gap-1 hover:bg-red-600 cursor-pointer"
-                  >
-                    <FaTrash /> Delete
-                  </button>
-                </div>
-              </td>
+      {/* Responsive Table Wrapper */}
+      <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+        <table className="min-w-full text-sm sm:text-base">
+          <thead className="bg-green-500 text-white">
+            <tr>
+              <th className="px-3 sm:px-5 py-3 text-start">Image</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Name</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Category</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Price</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Quantity</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Date</th>
+              <th className="px-3 sm:px-5 py-3 text-center">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
 
-      {/* popup modal */}
+          <tbody className="bg-white">
+            {products.map((crop) => (
+              <tr
+                key={crop._id}
+                className="border-b border-gray-200 hover:bg-gray-50 transition"
+              >
+                <td className="px-3 sm:px-4 py-2">
+                  <img
+                    src={crop.image}
+                    alt="Crop"
+                    className="h-12 w-16 sm:h-16 sm:w-20 object-cover rounded"
+                  />
+                </td>
+                <td className="px-3 sm:px-4 py-2 font-medium text-gray-800">
+                  {crop.name}
+                </td>
+                <td className="px-3 sm:px-4 py-2">{crop.type}</td>
+                <td className="px-3 sm:px-4 py-2 text-green-600 font-semibold">
+                  ৳{crop.price}
+                </td>
+                <td className="px-3 sm:px-4 py-2">
+                  {crop.quantity} {crop.unit}
+                </td>
+                <td className="px-3 sm:px-4 py-2">{crop.created_at_display}</td>
+                <td className="px-3 sm:px-4 py-2 text-center">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
+                    <button
+                      onClick={() => setSelectedCrop(crop)}
+                      className="flex items-center justify-center gap-1 border border-green-500 text-green-600 px-3 py-1 rounded hover:bg-green-500 hover:text-white transition w-full sm:w-auto"
+                    >
+                      <MdOutlineEditNote className="text-lg" /> Update
+                    </button>
+
+                    <button
+                      onClick={() => handleDelete(crop._id)}
+                      className="flex items-center justify-center gap-1 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition w-full sm:w-auto"
+                    >
+                      <FaTrash /> Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Popup modal */}
       {selectedCrop && (
         <UpdateCrop
           crop={selectedCrop}

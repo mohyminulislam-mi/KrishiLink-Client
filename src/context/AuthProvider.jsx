@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
 const googleProvider = new GoogleAuthProvider();
@@ -35,6 +36,24 @@ const AuthProvider = ({ children }) => {
   const singOutUser = () => {
     return signOut(auth);
   };
+  // user update there data into Awesome popup ;)
+  // Update user profile
+  const updateUserProfile = async (name, photoURL) => {
+    if (!auth.currentUser) return;
+
+    await updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photoURL,
+    });
+
+    // Update state manually so UI updates instantly
+    setUser({
+      ...auth.currentUser,
+      displayName: name,
+      photoURL: photoURL,
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -49,6 +68,7 @@ const AuthProvider = ({ children }) => {
     singInEmailPassword,
     singInWithGoogle,
     singOutUser,
+    updateUserProfile,
     user,
     loading,
   };

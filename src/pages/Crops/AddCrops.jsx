@@ -46,11 +46,12 @@ const AddCrop = () => {
       .then((data) => {
         toast.success("Added successful!");
         e.target.reset();
-        navigate("/all-crops");
+        navigate("/my-posts");
       });
   };
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-xl my-10">
+      <title>KrishiLink | Add Your Crops</title>
       <div className="text-center">
         <h2 className="text-2xl font-bold text-green-700 mb-2">Add New Crop</h2>
         <div className="flex justify-center mb-2">
@@ -145,7 +146,7 @@ const AddCrop = () => {
         ></textarea>
         {/* Location */}
         <div>
-          <label className="block font-medium mb-1">Present Address</label>
+          <label className="block font-medium mb-1">Location</label>
           <input
             type="text"
             name="address"

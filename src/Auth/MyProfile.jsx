@@ -4,6 +4,8 @@ import { AuthContext } from "../context/AuthContext";
 
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -13,14 +15,14 @@ const MyProfile = () => {
         <div className="card-body">
           <div className="mx-auto">
             <img
-              src={user?.photoURL}
+              src={user?.photoURL || user.reloadUserInfo.photoUrl}
               alt="User"
               className="w-[150px] h-[150px] rounded-full object-cover"
             />
           </div>
           <div className="text-center">
             <h1 className="text-3xl font-semibold text-center mb-1">
-              {user?.displayName}
+              {user?.displayName || user.reloadUserInfo.displayName}
             </h1>
             <p>{user?.email}</p>
           </div>

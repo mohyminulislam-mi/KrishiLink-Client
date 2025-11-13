@@ -1,121 +1,90 @@
-import React from "react";
-import { FaLeaf } from "react-icons/fa6";
+import React, { useEffect, useState } from "react";
 
-// const interestPromise = fetch('http://localhost:3000/interests').then(res => res.json())
 const MyInterests = () => {
+  const [crops, setCrops] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/interests")
+      .then((res) => res.json())
+      .then((data) => {
+        setCrops(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching crops:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-10">
+        <p className="text-green-600 font-semibold text-lg">Loading...</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-      <div className="bg-white rounded-2xl p-5">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <FaLeaf className="text-green-600 text-2xl" />
-            <h2 className="text-xl font-semibold text-gray-800">
-              Crop Request
-            </h2>
-          </div>
-          <span className="text-sm text-gray-500">Today</span>
-        </div>
+    <div className="w-11/12 mx-auto">
+      <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm mt-6">
+        <table className="min-w-full text-sm sm:text-base">
+          <thead className="bg-green-500 text-white">
+            <tr>
+              <th className="px-3 sm:px-5 py-3 text-start">Crop Name</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Owner Name</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Owner Email</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Quantity</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Message</th>
+              <th className="px-3 sm:px-5 py-3 text-start">Status</th>
+              <th className="px-3 sm:px-5 py-3 text-center">Submitted On</th>
+            </tr>
+          </thead>
 
-        <div className="space-y-2 text-gray-700">
-          <p>
-            <span className="font-medium text-gray-900">Name:</span> Mohyminul
-          </p>
-          <p>
-            <span className="font-medium text-gray-900">Email:</span>{" "}
-            Mohyminul@gmail.com
-          </p>
-          <p>
-            <span className="font-medium text-gray-900">Quantity:</span>{" "}
-            {/* {quantity} {units} */} 1kg
-          </p>
-          <p>
-            <span className="font-medium text-gray-900">Crop ID:</span>{" "}
-            <span className="text-sm bg-green-100 px-2 py-0.5 rounded-md text-green-700">
-              {/* {cropId} */} id-123456
-            </span>
-          </p>
-        </div>
-
-        <div className="mt-5 flex justify-end">
-          <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all">
-            View Details
-          </button>
-        </div>
-      </div>
-      {/* box 2 */}
-      <div className="bg-white rounded-2xl p-5">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <FaLeaf className="text-green-600 text-2xl" />
-            <h2 className="text-xl font-semibold text-gray-800">
-              Crop Request
-            </h2>
-          </div>
-          <span className="text-sm text-gray-500">Today</span>
-        </div>
-
-        <div className="space-y-2 text-gray-700">
-          <p>
-            <span className="font-medium text-gray-900">Name:</span> Mohyminul
-          </p>
-          <p>
-            <span className="font-medium text-gray-900">Email:</span>{" "}
-            Mohyminul@gmail.com
-          </p>
-          <p>
-            <span className="font-medium text-gray-900">Quantity:</span>{" "}
-            {/* {quantity} {units} */} 1kg
-          </p>
-          <p>
-            <span className="font-medium text-gray-900">Crop ID:</span>{" "}
-            <span className="text-sm bg-green-100 px-2 py-0.5 rounded-md text-green-700">
-              {/* {cropId} */} id-123456
-            </span>
-          </p>
-        </div>
-
-        <div className="mt-5 flex justify-end">
-          <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all">
-            View Details
-          </button>
-        </div>
-      </div>
-      <div className="bg-white rounded-2xl p-5">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <FaLeaf className="text-green-600 text-2xl" />
-            <h2 className="text-xl font-semibold text-gray-800">
-              Crop Request
-            </h2>
-          </div>
-          <span className="text-sm text-gray-500">Today</span>
-        </div>
-
-        <div className="space-y-2 text-gray-700">
-          <p>
-            <span className="font-medium text-gray-900">Name:</span> Mohyminul
-          </p>
-          <p>
-            <span className="font-medium text-gray-900">Email:</span>{" "}
-            Mohyminul@gmail.com
-          </p>
-          <p>
-            <span className="font-medium text-gray-900">Quantity:</span>{" "}
-            {/* {quantity} {units} */} 1kg
-          </p>
-          <p>
-            <span className="font-medium text-gray-900">Crop ID:</span>{" "}
-            <span className="text-sm bg-green-100 px-2 py-0.5 rounded-md text-green-700">
-              {/* {cropId} */} id-123456
-            </span>
-          </p>
-        </div>
-
-        <div className="mt-5 flex justify-end">
-          <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all">
-            View Details
-          </button>
-        </div>
+          <tbody className="bg-white">
+            {crops.length > 0 ? (
+              crops.map((crop) => (
+                <tr
+                  key={crop._id}
+                  className="border-b border-gray-200 hover:bg-gray-50 transition"
+                >
+                  <td className="px-3 sm:px-4 py-2">{crop.cropTitle}</td>
+                  <td className="px-3 sm:px-4 py-2 font-medium text-gray-800">
+                    {crop.name}
+                  </td>
+                  <td className="px-3 sm:px-4 py-2">{crop.email}</td>
+                  <td className="px-3 sm:px-4 py-2 text-green-600 font-semibold">
+                    {crop.quantity}
+                  </td>
+                  <td className="px-3 sm:px-4 py-2">{crop.message}</td>
+                  <td
+                    className={`px-3 sm:px-4 py-2 font-semibold ${
+                      crop.status === "pending"
+                        ? "text-yellow-600"
+                        : crop.status === "accept"
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
+                    {crop.status}
+                  </td>
+                  <td className="px-3 sm:px-4 py-2 text-gray-500">
+                    {new Date(crop.createdAt).toLocaleDateString()}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan="7"
+                  className="text-center py-6 text-gray-500 font-medium"
+                >
+                  No interests found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -45,13 +45,13 @@ const UpdateProfilePopup = ({ closeModal }) => {
             <button
               type="button"
               onClick={closeModal}
-              className="px-4 py-2 border rounded"
+              className="px-4 py-2 border rounded cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded"
+              className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded cursor-pointer"
             >
               Save
             </button>

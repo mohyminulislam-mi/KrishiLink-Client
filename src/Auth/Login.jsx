@@ -117,7 +117,7 @@ const Login = () => {
       {/* Google login*/}
       <button
         onClick={handleSinginGoogle}
-        className="btn bg-white text-black border-[#e5e5e5]"
+        className="btn bg-white text-black border-[#e5e5e5] w-full"
       >
         <svg
           aria-label="Google logo"
