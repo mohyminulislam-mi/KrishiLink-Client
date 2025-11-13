@@ -11,6 +11,7 @@ import AllCrops from "../pages/Crops/AllCrops";
 import MyInterests from "../pages/MyInterests";
 import MyPosts from "../pages/MyPosts";
 import CropDetails from "../pages/Crops/CropsDetails";
+import UpdateCrop from "../pages/Crops/UpdateCrop";
 
 const router = createBrowserRouter([
   {

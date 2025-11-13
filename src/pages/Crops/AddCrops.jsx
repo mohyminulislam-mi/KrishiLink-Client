@@ -54,7 +54,7 @@ const AddCrop = () => {
       <div className="text-center">
         <h2 className="text-2xl font-bold text-green-700 mb-2">Add New Crop</h2>
         <div className="flex justify-center mb-2">
-          <div className="w-24 h-[3px] rounded-full bg-gradient-to-r from-green-600 to-green-400"></div>
+          <div className="w-24 h-[3px] rounded-full bg-linear-to-r from-green-600 to-green-400"></div>
         </div>
         <p className="  text-gray-600 mb-8">
           You can add your all type Crops. and this crop visible for our
@@ -134,17 +134,15 @@ const AddCrop = () => {
         </div>
 
         {/* Description */}
-        <div>
-          <label className="block font-medium mb-1">Description</label>
-          <textarea
-            name="description"
-            required
-            rows="3"
-            placeholder="Description about the crop"
-            className="input input-bordered w-full border-gray-300 rounded-lg p-2 outline-none border resize-none"
-          ></textarea>
-        </div>
 
+        <label className="block font-medium mb-1">Description</label>
+        <textarea
+          name="description"
+          required
+          placeholder="Description about the crop"
+          rows="2"
+          className="w-full border-gray-300 rounded-lg p-2 outline-none border resize-none"
+        ></textarea>
         {/* Location */}
         <div>
           <label className="block font-medium mb-1">Present Address</label>
@@ -172,7 +170,7 @@ const AddCrop = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition cursor-pointer"
+          className="w-full  bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition cursor-pointer"
         >
           Add Crop
         </button>
