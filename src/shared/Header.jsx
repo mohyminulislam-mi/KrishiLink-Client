@@ -1,17 +1,18 @@
-import React, { use } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router";
+import React, { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router";
 import Logo from "../assets/logo.png";
 import { AuthContext } from "../context/AuthContext";
 import { IoExitOutline, IoHome } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { PiPlantBold } from "react-icons/pi";
 import { FaPenToSquare } from "react-icons/fa6";
-import { CiGrid42 } from "react-icons/ci";
-import { ToastContainer, toast } from "react-toastify";
-import { MdAddCircleOutline } from "react-icons/md";
+import { toast } from "react-toastify";
+import { HiMiniSquaresPlus } from "react-icons/hi2";
+import { TbCopyPlus } from "react-icons/tb";
 
 const Header = () => {
-  const { user, singOutUser } = use(AuthContext);
+  const { user, singOutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSingOut = () => {
     singOutUser()
@@ -19,125 +20,175 @@ const Header = () => {
         toast.success("Logout successful");
         navigate("/login");
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
   };
 
   const links = (
     <>
       <li>
-        <NavLink to={"/"}>
-          <IoHome />
-          Home
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `flex items-center gap-1 ${
+              isActive ? "text-green-600 font-semibold" : ""
+            }`
+          }
+        >
+          <IoHome /> Home
         </NavLink>
       </li>
       <li>
-        <NavLink to={"/all-crops"}>
-          <PiPlantBold />
-          All Crops
+        <NavLink
+          to="/all-crops"
+          className={({ isActive }) =>
+            `flex items-center gap-1 ${
+              isActive ? "text-green-600 font-semibold" : ""
+            }`
+          }
+        >
+          <PiPlantBold /> All Crops
         </NavLink>
       </li>
+
       {user && (
         <>
           <li>
-            <NavLink to={"/add-crops"}>
-              {" "}
-              <FaPenToSquare />
-              Add Crops
+            <NavLink
+              to="/add-crops"
+              className={({ isActive }) =>
+                `flex items-center gap-1 ${
+                  isActive ? "text-green-600 font-semibold" : ""
+                }`
+              }
+            >
+              <FaPenToSquare /> Add Crops
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/my-posts"}>
-              <MdAddCircleOutline />
-              My Posts
+            <NavLink
+              to="/my-posts"
+              className={({ isActive }) =>
+                `flex items-center gap-1 ${
+                  isActive ? "text-green-600 font-semibold" : ""
+                }`
+              }
+            >
+              <TbCopyPlus /> My Posts
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/my-interests"}>
-              <CiGrid42 />
-              My interests
+            <NavLink
+              to="/my-interests"
+              className={({ isActive }) =>
+                `flex items-center gap-1 ${
+                  isActive ? "text-green-600 font-semibold" : ""
+                }`
+              }
+            >
+              <HiMiniSquaresPlus /> My Interests
             </NavLink>
           </li>
         </>
       )}
     </>
   );
+
   return (
-    <div className="w-11/12 mx-auto navbar">
+    <div className="w-11/12 mx-auto navbar bg-base-100 ">
       <div className="navbar-start">
+        {/* Mobile Dropdown */}
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <button
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost lg:hidden"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
-          </div>
+          </button>
           <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box shadow mt-3 w-52 p-2"
           >
             {links}
           </ul>
         </div>
-        <Link to={"/"} className="flex items-center gap-2">
+
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2">
           <img src={Logo} alt="Logo" className="w-8" />
-          <span className="text-3xl font-semibold text-green-700">
-            KrishiLink
-          </span>
+          <span className="text-2xl font-bold text-green-700">KrishiLink</span>
         </Link>
       </div>
+
+      {/* Desktop Menu */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
+
+      {/* Right Side */}
       <div className="navbar-end">
         {user ? (
           <div className="dropdown dropdown-end">
-            <div
+            <button
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt="User" src={user?.photoURL} />
+                <img
+                  alt="User Avatar"
+                  src={user?.photoURL || "https://i.ibb.co/8xM1d0B/avatar.png"}
+                />
               </div>
-            </div>
+            </button>
             <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10"
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box shadow mt-3 w-52 p-2 z-50"
             >
-              <Link
-                to={"/my-profile"}
-                className="font-bold cursor-pointer flex items-center gap-1 justify-center hover:bg-green-50"
-              >
-                <CgProfile /> Profile
-              </Link>
-              <button
-                className="text-white font-semibold cursor-pointer flex items-center gap-1 justify-center mt-2 bg-green-600 py-2 rounded"
-                onClick={handleSingOut}
-              >
-                <IoExitOutline /> Sing Out
-              </button>
+              <li>
+                <Link
+                  to="/my-profile"
+                  className="font-bold flex items-center gap-1 justify-center hover:bg-green-50"
+                >
+                  <CgProfile /> Profile
+                </Link>
+              </li>
+              <li>
+                <button
+                  onClick={handleSingOut}
+                  className="mt-2 bg-green-600 text-white font-semibold py-2 rounded flex items-center justify-center gap-1"
+                >
+                  <IoExitOutline /> Sign Out
+                </button>
+              </li>
             </ul>
           </div>
         ) : (
-          <div className="space-x-3">
-            <Link to={"/login"} className="btn-primary">
+          <div className="space-x-2">
+            <Link
+              to="/login"
+              className="bg-green-600 text-white px-4 py-2 rounded font-semibold"
+            >
               Login
             </Link>
-            <Link to={"/registration"} className="btn-primary">
-              Singup
+            <Link
+              to="/registration"
+              className="border border-green-600 text-green-600 px-4 py-2 rounded font-semibold"
+            >
+              Signup
             </Link>
           </div>
         )}

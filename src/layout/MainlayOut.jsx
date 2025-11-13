@@ -6,12 +6,12 @@ import { ToastContainer } from "react-toastify";
 const MainlayOut = () => {
   return (
     <div>
-      <header className="bg-base-100">
+      <header className="bg-base-100 sticky top-0 z-50">
         <Header />
       </header>
-      <div>
+      <section>
         <Outlet></Outlet>
-      </div>
+      </section>
       <footer className="bg-base-200">
         <Footer />
       </footer>

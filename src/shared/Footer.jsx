@@ -7,11 +7,17 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import Logo from "../assets/logo.png";
+import { toast } from "react-toastify";
 
 const Footer = () => {
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    toast.success("Thanks for connect!");
+    e.target.reset();
+  };
   return (
     <div className="w-11/12 mx-auto text-base-content mt-10">
-      <div className="w-11/12 mx-auto py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* --- Brand Section --- */}
         <div>
           <Link to="/" className="flex items-center gap-2 mb-3">
@@ -96,22 +102,22 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3 text-green-700">Support</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/faq" className="hover:text-green-600">
+              <Link to="/" className="hover:text-green-600">
                 FAQ
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="hover:text-green-600">
+              <Link to="/" className="hover:text-green-600">
                 Contact Us
               </Link>
             </li>
             <li>
-              <Link to="/terms" className="hover:text-green-600">
+              <Link to="/" className="hover:text-green-600">
                 Terms & Conditions
               </Link>
             </li>
             <li>
-              <Link to="/privacy" className="hover:text-green-600">
+              <Link to="/" className="hover:text-green-600">
                 Privacy Policy
               </Link>
             </li>
@@ -126,14 +132,17 @@ const Footer = () => {
           <p className="text-sm text-gray-600 mb-3">
             Get weekly updates about crops, trends, and best farming practices.
           </p>
-          <div className="flex items-center justify-center gap-2 p-2 rounded-md bg-green-50">
+          <form
+            onSubmit={handleSubscribe}
+            className="flex items-center justify-center gap-2 p-2 rounded-md bg-green-50"
+          >
             <input
               className="focus:ring-2 ring-green-600 outline-none w-full max-w-64 py-2 rounded px-2"
               type="email"
               placeholder="Enter your email"
             />
             <button className="btn-primary">Subscribe</button>
-          </div>
+          </form>
         </div>
       </div>
 
