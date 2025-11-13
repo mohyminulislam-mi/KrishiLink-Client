@@ -50,7 +50,9 @@ const ForgetPassword = () => {
                 name="email"
                 required
               />
-              <button className="btn btn-neutral mt-4">Forgot Password</button>
+              <button className="btn bg-green-500 hover:bg-green-600 text-white mt-4">
+                Forgot Password
+              </button>
             </fieldset>
           </form>
         </div>

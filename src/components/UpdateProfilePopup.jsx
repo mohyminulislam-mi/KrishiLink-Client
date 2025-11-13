@@ -14,7 +14,7 @@ const UpdateProfilePopup = ({ closeModal }) => {
 
   return (
     <div className="fixed inset-0 bg-opacity-40 flex justify-center items-center">
-      <title>Game Share | Update Your Profile</title>
+      <title>KrishiLink | Update Your Profile</title>
       <div className="bg-white p-6 rounded-xl w-[380px] shadow-lg">
         <h2 className="text-xl font-semibold text-center">Update Profile</h2>
 
@@ -51,7 +51,7 @@ const UpdateProfilePopup = ({ closeModal }) => {
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-purple-600 text-white rounded"
+              className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded"
             >
               Save
             </button>

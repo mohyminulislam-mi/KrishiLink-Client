@@ -1,19 +1,22 @@
-import React, { use, useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
 
 const Registration = () => {
-  const [singIn, setSingIn] = useState(false);
+  const [signIn, setSignIn] = useState(false);
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [password, setPassword] = useState("");
-  const { createUserWithEmailPassword, singInWithGoogle } = use(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const { createUserWithEmailPassword, singInWithGoogle } =
+    useContext(AuthContext);
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{6,}$/;
 
   const location = useLocation();
-  const nevigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -22,11 +25,26 @@ const Registration = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const photo = e.target.photo.value;
+    const checkbox = e.target.terms?.checked;
 
-    console.log("submit your details", name, email, password, photo);
-    // password validation chcek
+    // Password validation
     if (!passwordPattern.test(password)) {
       setPasswordError("Your password format is invalid.");
+      Swal.fire({
+        title: "Invalid Password",
+        text: "Your password format is invalid.",
+        icon: "error",
+      });
+      return;
+    }
+
+    if (!checkbox) {
+      setError("Please accept our conditions");
+      Swal.fire({
+        title: "Terms Required",
+        text: "Please accept our conditions to register.",
+        icon: "warning",
+      });
       return;
     }
 
@@ -35,37 +53,37 @@ const Registration = () => {
         const user = result.user;
         updateProfile(user, { displayName: name, photoURL: photo });
         Swal.fire({
-          title: "Successful",
+          title: "Registration Successful",
           icon: "success",
-          draggable: true,
         });
         e.target.reset();
-        nevigate("/");
+        setSignIn(true);
+        setError("");
+        navigate(location.state || "/");
       })
       .catch((error) => {
-        console.log(error.message);
+        setError(error.message);
+        Swal.fire({
+          title: "Registration Failed",
+          text: error.message,
+          icon: "error",
+        });
       });
-
-    // set scusess or Error
-    setError("");
-    setSingIn(false);
-
-    if (!checkbox) {
-      setError("please accept our conditions");
-      return;
-    }
   };
-  // singin with google
+
+  // Sing in Google
   const handleSinginGoogle = () => {
     singInWithGoogle()
       .then((result) => {
-        console.log(result.user);
-        nevigate(location.state || "/");
+        toast.success("Login successful!");
+        navigate(location.state || "/");
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
+        toast.error("Google login failed. Try again.");
       });
   };
+
   return (
     <div className="hero min-h-screen py-[60px]">
       <title>KrishiLink | Register Now</title>
@@ -91,20 +109,29 @@ const Registration = () => {
                 required
               />
               <label className="label text-sm mt-1 text-black">Password</label>
-              <input
-                type="password"
-                className={`input w-full ${
-                  passwordError ? "input-error" : "input-success"
-                }`}
-                placeholder="Password"
-                name="password"
-                required
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setPasswordError("");
-                }}
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className={`input w-full ${
+                    passwordError ? "input-error" : "input-success"
+                  }`}
+                  placeholder="Password"
+                  name="password"
+                  required
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setPasswordError("");
+                  }}
+                />
+                <button
+                  type="button"
+                  className="absolute right-2 top-2 text-sm text-blue-600"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
               {passwordError && (
                 <p className="text-red-600 text-sm mt-1">{passwordError}</p>
               )}
@@ -121,20 +148,24 @@ const Registration = () => {
                 name="photo"
                 required
               />
-              <button className="btn btn-neutral mt-2">Submit</button>{" "}
-              {/* messgaes  */}
+              <label className="flex items-center mt-2">
+                <input type="checkbox" name="terms" />
+                <span className="ml-2 text-sm">Accept Terms & Conditions</span>
+              </label>
+              <button className="btn btn-neutral mt-2">Submit</button>
               {error && <p className="text-red-500">{error}</p>}
-              {singIn && (
-                <p className="text-green-500">Account create Success</p>
+              {signIn && (
+                <p className="text-green-500">Account created successfully</p>
               )}
             </fieldset>
           </form>
           <div className="text-center mt-1 flex flex-col">
             <span className="font-bold">Or</span>
+
             {/* Google */}
             <button
-              className="btn bg-white text-black border-[#e5e5e5]"
               onClick={handleSinginGoogle}
+              className="btn bg-white text-black border-[#e5e5e5]"
             >
               <svg
                 aria-label="Google logo"
@@ -171,7 +202,7 @@ const Registration = () => {
               Already have an account?{" "}
               <Link to={"/login"} className="text-blue-600 font-medium">
                 Login Here
-              </Link>{" "}
+              </Link>
             </p>
           </div>
         </div>

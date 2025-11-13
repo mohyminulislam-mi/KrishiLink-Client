@@ -26,7 +26,7 @@ const MyProfile = () => {
           </div>
           <button
             onClick={() => setOpen(true)}
-            className="btn btn-neutral mt-4"
+            className="btn bg-green-500 hover:bg-green-600 text-white mt-4"
           >
             Update Profile
           </button>
