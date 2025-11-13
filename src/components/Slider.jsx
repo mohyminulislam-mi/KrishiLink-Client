@@ -16,7 +16,7 @@ import slider4 from "../assets/4.jpg";
 
 const Slider = () => {
   return (
-    <div className="h-[75vh]">
+    <div className="lg:h-[75vh] md:h-[60vh] h-[40vh]">
       <Swiper
         pagination={{
           dynamicBullets: true,
@@ -36,9 +36,6 @@ const Slider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img src={slider3} alt="Slider 3" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slider4} alt="Slider 4" />
         </SwiperSlide>
       </Swiper>
     </div>
