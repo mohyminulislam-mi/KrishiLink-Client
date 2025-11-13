@@ -35,7 +35,7 @@ const AddCrop = () => {
     console.log(newProduct);
 
     // post data into server
-    fetch("http://localhost:3000/products", {
+    fetch("https://krishi-link-server-eta.vercel.app/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

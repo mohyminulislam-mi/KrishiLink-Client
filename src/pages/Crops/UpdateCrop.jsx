@@ -21,11 +21,14 @@ const UpdateCrop = ({ crop, onClose, onUpdate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`http://localhost:3000/products/${crop._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+    const res = await fetch(
+      `https://krishi-link-server-eta.vercel.app/products/${crop._id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }
+    );
 
     const data = await res.json();
 

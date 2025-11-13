@@ -18,7 +18,7 @@ const CropDetails = () => {
 
   // Load crop details
   useEffect(() => {
-    fetch(`http://localhost:3000/products/${id}`)
+    fetch(`https://krishi-link-server-eta.vercel.app/products/${id}`)
       .then((res) => res.json())
       .then((data) => setCrop(data))
       .catch((err) => console.error(err));
@@ -26,7 +26,7 @@ const CropDetails = () => {
 
   //interests filter data
   useEffect(() => {
-    fetch("http://localhost:3000/interests")
+    fetch("https://krishi-link-server-eta.vercel.app/interests")
       .then((res) => res.json())
       .then((data) => {
         const filtered = data.filter((item) => item.cropId === id);
@@ -41,19 +41,22 @@ const CropDetails = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/interests", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          cropId: id,
-          name: user.displayName,
-          email: user.email,
-          quantity: Number(quantity),
-          units,
-          message,
-          cropTitle: crop.name,
-        }),
-      });
+      const response = await fetch(
+        "https://krishi-link-server-eta.vercel.app/interests",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            cropId: id,
+            name: user.displayName,
+            email: user.email,
+            quantity: Number(quantity),
+            units,
+            message,
+            cropTitle: crop.name,
+          }),
+        }
+      );
 
       const data = await response.json();
       const swalWithBootstrapButtons = Swal.mixin({
@@ -109,7 +112,7 @@ const CropDetails = () => {
   if (!crop) return <Loading></Loading>;
 
   console.log(crop);
-  
+
   return (
     <div className="w-10/12 mx-auto grid grid-cols-1  py-8 gap-7">
       <div className="">

@@ -10,7 +10,7 @@ const AllCrops = () => {
   const [sort, setSort] = useState("none");
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("https://krishi-link-server-eta.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setCrops(data);

@@ -84,7 +84,9 @@ const router = createBrowserRouter([
       {
         path: "/crop-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/products/${params.id}`),
+          fetch(
+            `https://krishi-link-server-eta.vercel.app/products/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <CropDetails></CropDetails>

@@ -13,7 +13,9 @@ const MyPosts = () => {
   const [selectedCrop, setSelectedCrop] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/products?email=${user?.email}`)
+    fetch(
+      `https://krishi-link-server-eta.vercel.app/products?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -39,9 +41,12 @@ const MyPosts = () => {
     });
 
     if (confirmDelete.isConfirmed) {
-      const res = await fetch(`http://localhost:3000/products/${_id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://krishi-link-server-eta.vercel.app/products/${_id}`,
+        {
+          method: "DELETE",
+        }
+      );
       const data = await res.json();
 
       if (data.deletedCount > 0) {

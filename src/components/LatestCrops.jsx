@@ -7,7 +7,7 @@ const LatestCrops = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/latest-products")
+    fetch("https://krishi-link-server-eta.vercel.app/latest-products")
       .then((res) => res.json())
       .then((data) => {
         setCrops(data);
