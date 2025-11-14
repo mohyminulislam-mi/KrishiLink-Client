@@ -1,4 +1,5 @@
 import React from "react";
+import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const LatestCrop = ({ crops }) => {
@@ -35,8 +36,8 @@ const LatestCrop = ({ crops }) => {
               <p className="text-sm text-gray-600 mb-3 line-clamp-2">
                 {crop.description}
               </p>
-              <p className="text-sm font-normal text-gray-500 mb-3">
-                {crop.address}
+              <p className="text-sm font-medium text-gray-500 mb-5 flex items-center gap-2">
+                <FaLocationDot  className="text-green-500 font-bold"/>  {crop.address}
               </p>
 
               <div className="pb-3 pt-1 w-full">

@@ -5,6 +5,8 @@ import { BiSolidUserDetail } from "react-icons/bi";
 import Swal from "sweetalert2";
 import Loading from "../../loading/Loading";
 import InterestTableData from "../../components/InterestTableData";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const CropDetails = () => {
   const { user } = useContext(AuthContext);
@@ -26,15 +28,20 @@ const CropDetails = () => {
 
   // Load interests of this crop
   useEffect(() => {
-    fetch("https://krishi-link-server-eta.vercel.app/interests")
+    fetch(
+      `https://krishi-link-server-eta.vercel.app/all-interests/${crop?._id}`
+    )
       .then((res) => res.json())
       .then((data) => {
-        const filtered = data.filter((item) => item.cropId?.toString() === id);
-        setInterests(filtered);
+        // const filtered = data.filter((item) => item.cropId?.toString() === id);
+        setInterests(data);
+        console.log(data);
       })
 
       .catch((err) => console.error(err));
-  }, [id]);
+  }, [crop?._id]);
+
+  console.log(crop);
 
   // Submit interest
   const handleInterestSubmit = async (e) => {
@@ -87,31 +94,57 @@ const CropDetails = () => {
   if (!crop) return <Loading />;
 
   return (
-    <div className="w-10/12 mx-auto grid grid-cols-1 py-8 gap-7">
+    <div className="w-8/12 mx-auto grid grid-cols-1 py-8 gap-7">
       <div>
-        <img
-          src={crop.image}
-          alt={crop.name}
-          className="w-full h-72 object-cover rounded-lg mb-6"
-        />
-        <h1 className="text-3xl font-bold mb-2">{crop.name}</h1>
-        <p className="text-gray-600 mb-1">Type: {crop.type}</p>
-        <p className="text-gray-600 mb-1">
-          Quantity: {crop.quantity} {crop.unit}
-        </p>
-        <p className="text-green-600 font-bold mb-3">Price: ৳{crop.price}</p>
-
-        <div className="text-gray-600 mb-1 grid lg:grid-cols-7 grid-cols-1 items-center gap-2">
-          <div className="lg:col-span-1 flex items-center gap-2">
-            <BiSolidUserDetail className="text-green-500 text-3xl" />
-            <p className="font-semibold text-lg">{crop.owner.ownerName}</p>
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-9">
+          <div>
+            <img
+              src={crop.image}
+              alt={crop.name}
+              className="w-full h-[500px] object-cover rounded-lg mb-6"
+            />
           </div>
-          <p className="lg:col-span-6">({crop.owner.ownerEmail})</p>
-        </div>
+          <div>
+            <h1 className="text-3xl font-bold mb-2">{crop.name}</h1>
+            <p className="text-green-600 font-bold mb-5 text-xl">
+              Price: ৳{crop.price}
+            </p>
+            <div className="flex gap-3 items-center">
+              <p>Type: </p>
+              <span className="text-sm text-green-800 mb-1 px-3 py-2 rounded-full bg-green-200">
+                {" "}
+                {crop.type}
+              </span>
+            </div>
+            <p className="text-gray-600 my-2">
+              Quantity: {crop.quantity} {crop.unit}
+            </p>
 
-        <p className="text-gray-700 mb-4 mt-2">
-          Description: <br /> {crop.description}
-        </p>
+            <p className="text-medium font-medium text-gray-500 my-3 flex items-center gap-2 ">
+              <FaLocationDot className="text-green-500 font-bold" />{" "}
+              {crop.address}
+            </p>
+            <p className="text-gray-600 mt-5 flex gap-2">
+              <FaRegCalendarAlt className="text-green-500 text-xl" />{" "}
+              {crop.created_at_display}
+            </p>
+            <div className="text-gray-600 mb-1 flex gap-3 items-center">
+              <div className="flex gap-2">
+                <BiSolidUserDetail className="text-green-500 text-3xl" />
+                <p className="font-semibold text-lg">{crop.owner.ownerName}</p>
+              </div>
+              <div>
+                <p className="">({crop.owner.ownerEmail})</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* description start  */}
+        <div>
+          <p className="text-gray-700 mb-4 mt-2">
+            Description: <br /> {crop.description}
+          </p>
+        </div>
       </div>
 
       {user.email === crop.owner.ownerEmail ? (

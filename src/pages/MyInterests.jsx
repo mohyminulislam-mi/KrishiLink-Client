@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import Loading from "../loading/Loading";
 
 const MyInterests = () => {
   const { user } = useContext(AuthContext);
@@ -22,11 +23,7 @@ const MyInterests = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center py-10">
-        <p className="text-green-600 font-semibold text-lg">Loading...</p>
-      </div>
-    );
+    return <Loading></Loading>;
   }
 
   return (
@@ -65,7 +62,7 @@ const MyInterests = () => {
                     className={`px-3 sm:px-4 py-2 font-semibold ${
                       crop.status === "pending"
                         ? "text-yellow-600"
-                        : crop.status === "accept"
+                        : crop.status === "accepted"
                         ? "text-green-600"
                         : "text-red-600"
                     }`}

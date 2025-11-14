@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LatestCrop from "./LatestCrop";
 import { Link } from "react-router";
+import Loading from "../loading/Loading";
 
 const LatestCrops = () => {
   const [crops, setCrops] = useState([]);
@@ -33,11 +34,7 @@ const LatestCrops = () => {
       </div>
 
       {/* Loading state */}
-      {loading ? (
-        <div className="text-center text-green-600">Loading...</div>
-      ) : (
-        <LatestCrop crops={crops} />
-      )}
+      {loading ? <Loading></Loading> : <LatestCrop crops={crops} />}
 
       <div className="text-center my-10">
         <Link

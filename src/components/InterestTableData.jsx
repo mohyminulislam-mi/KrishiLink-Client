@@ -38,7 +38,7 @@ const InterestTableData = ({ interests, setInterests }) => {
   return (
     <div className="overflow-x-auto bg-white rounded shadow">
       <table className="min-w-full table-auto">
-        <thead className="bg-gray-200">
+        <thead className="bg-green-500 text-white">
           <tr>
             <th className="px-4 py-2 text-left">Buyer Name</th>
             <th className="px-4 py-2 text-left">Email</th>
@@ -74,7 +74,7 @@ const InterestTableData = ({ interests, setInterests }) => {
                     updatingId === req._id
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-green-500 hover:bg-green-600"
-                  } text-white px-3 py-1 rounded`}
+                  } text-white px-3 py-1 rounded cursor-pointer`}
                 >
                   Accept
                 </button>
@@ -85,7 +85,7 @@ const InterestTableData = ({ interests, setInterests }) => {
                     updatingId === req._id
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-red-500 hover:bg-red-600"
-                  } text-white px-3 py-1 rounded`}
+                  } text-white px-3 py-1 rounded cursor-pointer`}
                 >
                   Reject
                 </button>
