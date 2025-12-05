@@ -38,6 +38,9 @@ const AllCrops = () => {
   // my final data here
   const finalCrops = sorted;
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="w-11/12 mx-auto">
       <div className="text-center mt-10 mb-20">
@@ -50,7 +53,7 @@ const AllCrops = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
         <div className="col-span-2">
-          <h1 className="font-bold text-green-600 text-xl">
+          <h1 className="lg:font-bold font-normal text-green-600 lg:text-xl text-small ">
             ({finalCrops.length}) Available
           </h1>
         </div>
@@ -97,7 +100,7 @@ const AllCrops = () => {
       {loading ? (
         <Loading></Loading>
       ) : finalCrops.length ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 py-8">
           {finalCrops.map((crop) => (
             <AllCropData key={crop.id} crop={crop} />
           ))}

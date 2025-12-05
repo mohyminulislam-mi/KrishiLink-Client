@@ -94,7 +94,7 @@ const Header = () => {
   );
 
   return (
-    <div className="w-11/12 mx-auto navbar bg-base-100 ">
+    <div className="w-11/12 mx-auto navbar px-0 bg-base-100 ">
       <div className="navbar-start">
         {/* Mobile Dropdown */}
         <div className="dropdown">

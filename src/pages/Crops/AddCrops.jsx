@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 const AddCrop = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleAddCrop = (e) => {
     e.preventDefault();
@@ -50,7 +53,7 @@ const AddCrop = () => {
       });
   };
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-xl my-10">
+    <div className="w-11/12 lg:w-8/12 mx-auto p-6 bg-white shadow-md rounded-xl my-10">
       <title>KrishiLink | Add Your Crops</title>
       <div className="text-center">
         <h2 className="text-2xl font-bold text-green-700 mb-2">Add New Crop</h2>

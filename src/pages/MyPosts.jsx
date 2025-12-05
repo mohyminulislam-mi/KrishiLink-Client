@@ -13,6 +13,10 @@ const MyPosts = () => {
   const [selectedCrop, setSelectedCrop] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     fetch(
       `https://krishi-link-server-eta.vercel.app/products?email=${user?.email}`
     )
@@ -55,7 +59,6 @@ const MyPosts = () => {
       }
     }
   };
-
   return (
     <div className="w-11/12 mx-auto py-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
@@ -64,7 +67,7 @@ const MyPosts = () => {
 
       {/* Responsive Table Wrapper */}
       <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
-        <table className="min-w-full text-sm sm:text-base">
+        <table className="min-w-[768px] lg:w-full text-sm sm:text-base md:text-base">
           <thead className="bg-green-500 text-white">
             <tr>
               <th className="px-3 sm:px-5 py-3 text-start">Image</th>
@@ -72,7 +75,9 @@ const MyPosts = () => {
               <th className="px-3 sm:px-5 py-3 text-start">Category</th>
               <th className="px-3 sm:px-5 py-3 text-start">Price</th>
               <th className="px-3 sm:px-5 py-3 text-start">Quantity</th>
-              <th className="px-3 sm:px-5 py-3 text-start">Date</th>
+              <th className="px-2 py-3 text-start sm:px-5 md:px-6 lg:px-8">
+                Post Date
+              </th>
               <th className="px-3 sm:px-5 py-3 text-center">Actions</th>
             </tr>
           </thead>
@@ -100,9 +105,13 @@ const MyPosts = () => {
                 <td className="px-3 sm:px-4 py-2">
                   {crop.quantity} {crop.unit}
                 </td>
-                <td className="px-3 sm:px-4 py-2">{crop.created_at_display}</td>
+                <td className="px-2 py-2 text-xs sm:px-4 md:px-5 lg:px-7 sm:text-sm whitespace-normal">
+                  <span className="w-full block">
+                    {crop.created_at_display}
+                  </span>
+                </td>
                 <td className="px-3 sm:px-4 py-2 text-center">
-                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2">
+                  <div className="flex flex-col lg:flex-row justify-center items-center gap-2">
                     <button
                       onClick={() => setSelectedCrop(crop)}
                       className="flex items-center justify-center gap-1 border border-green-500 text-green-600 px-3 py-1 rounded hover:bg-green-500 hover:text-white transition w-full sm:w-auto"

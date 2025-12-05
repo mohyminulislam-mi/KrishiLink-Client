@@ -49,10 +49,6 @@ li>a:hover {
   height: 100%;
 }
 
-.swiper-pagination-bullet-active {
-  @apply bg-green-700;
-}
-
 .swiper-pagination-bullet {
-  @apply bg-green-200;
+ background-color: #00a63e !important;
 }

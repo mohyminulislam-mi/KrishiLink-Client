@@ -8,6 +8,10 @@ const MyInterests = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     fetch(
       `https://krishi-link-server-eta.vercel.app/interests?email=${user?.email}`
     )

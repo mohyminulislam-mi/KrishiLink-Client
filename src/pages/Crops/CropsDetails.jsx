@@ -7,6 +7,7 @@ import Loading from "../../loading/Loading";
 import InterestTableData from "../../components/InterestTableData";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const CropDetails = () => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,9 @@ const CropDetails = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // Load crop details
   useEffect(() => {
     fetch(`https://krishi-link-server-eta.vercel.app/products/${id}`)
@@ -46,6 +50,11 @@ const CropDetails = () => {
   // Submit interest
   const handleInterestSubmit = async (e) => {
     e.preventDefault();
+
+    if (crop.quantity <= 0) {
+      toast.error("The product sold out");
+      return;
+    }
     setLoading(true);
 
     try {
@@ -94,9 +103,9 @@ const CropDetails = () => {
   if (!crop) return <Loading />;
 
   return (
-    <div className="w-8/12 mx-auto grid grid-cols-1 py-8 gap-7">
+    <div className="lg:w-8/12 w-11/12 mx-auto grid grid-cols-1 py-8 gap-7">
       <div>
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-9">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-9">
           <div>
             <img
               src={crop.image}
@@ -117,7 +126,15 @@ const CropDetails = () => {
               </span>
             </div>
             <p className="text-gray-600 my-2">
-              Quantity: {crop.quantity} {crop.unit}
+              Quantity:
+              {crop.quantity === 0 ? (
+                <span className="text-red-500 font-semibold"> Sold Out</span>
+              ) : (
+                <>
+                  {" "}
+                  {crop.quantity} {crop.unit}
+                </>
+              )}
             </p>
 
             <p className="text-medium font-medium text-gray-500 my-3 flex items-center gap-2 ">
@@ -128,13 +145,13 @@ const CropDetails = () => {
               <FaRegCalendarAlt className="text-green-500 text-xl" />{" "}
               {crop.created_at_display}
             </p>
-            <div className="text-gray-600 mb-1 flex gap-3 items-center">
+            <div className="text-gray-600 mb-1 mt-2 flex flex-col md:flex-row gap-3 md:items-center">
               <div className="flex gap-2">
                 <BiSolidUserDetail className="text-green-500 text-3xl" />
                 <p className="font-semibold text-lg">{crop.owner.ownerName}</p>
               </div>
               <div>
-                <p className="">({crop.owner.ownerEmail})</p>
+                <p className="-mt-3 md:mt-0">({crop.owner.ownerEmail})</p>
               </div>
             </div>
           </div>
@@ -148,7 +165,11 @@ const CropDetails = () => {
       </div>
 
       {user.email === crop.owner.ownerEmail ? (
-        <InterestTableData interests={interests} setInterests={setInterests} />
+        <InterestTableData
+          interests={interests}
+          setInterests={setInterests}
+          setCrop={setCrop}
+        />
       ) : (
         <div>
           <form
@@ -211,7 +232,7 @@ const CropDetails = () => {
             <button
               type="submit"
               disabled={loading}
-              className="bg-green-600 text-white px-5 py-2 mt-3 rounded-lg hover:bg-green-700 w-full disabled:bg-gray-400"
+              className="bg-green-600 text-white px-5 py-2 mt-3 cursor-pointer rounded-lg hover:bg-green-700 w-full disabled:bg-gray-400"
             >
               {loading ? "Submitting..." : "Submit Interest"}
             </button>
