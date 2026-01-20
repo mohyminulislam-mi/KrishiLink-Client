@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import {
   Menu,
   X,
-  Plus,
-  Package,
   Users,
   FileText,
   BarChart3,
@@ -37,18 +35,6 @@ const DashboardLayout = () => {
     },
   ];
 
-  const fermerMenuItems = [
-    { path: "/", icon: House, label: "Home" },
-    { path: "/dashboard", icon: UserRound, label: "My Profile" },
-    { path: "/dashboard/my-meals", icon: UserRound, label: "My Meals" },
-    {
-      path: "/dashboard/order-requests",
-      icon: Package,
-      label: "Order Requests",
-    },
-    { path: "/dashboard/create-meal", icon: Plus, label: "Create Meal" },
-  ];
-
   const adminMenuItems = [
     { path: "/", icon: House, label: "Home" },
     { path: "/dashboard", icon: UserRound, label: "My Profile" },
@@ -66,7 +52,6 @@ const DashboardLayout = () => {
   ];
 
   const getMenuItems = () => {
-    if (role === "fermer") return fermerMenuItems;
     if (role === "admin") return adminMenuItems;
     return userMenuItems;
   };
@@ -77,7 +62,7 @@ const DashboardLayout = () => {
       text: `${user.displayName}. If you're logging out, you can't access!`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#f54a00",
+      confirmButtonColor: "#00C950",
       cancelButtonColor: "#ff0000",
       confirmButtonText: "Logout",
     }).then((result) => {
@@ -118,15 +103,11 @@ const DashboardLayout = () => {
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="p-6 border-b">
+          <div className="p-6 border-b border-green-400">
             <h2 className="text-2xl font-bold text-gray-800">
-              {role === "fermer"
-                ? "fermer"
-                : role === "admin"
-                  ? "Admin"
-                  : "User"}
+              {role === "admin" ? "Admin" : "User"}
             </h2>
-            <p className="text-sm text-primary font-semibold mt-1">
+            <p className="text-sm text-green-600 font-semibold mt-1">
               {user?.displayName || "Profile"}
             </p>
           </div>
@@ -147,8 +128,8 @@ const DashboardLayout = () => {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors w-full ${
                           isActive
-                            ? "bg-orange-50 text-primary"
-                            : "text-gray-700 hover:bg-gray-100"
+                            ? "bg-green-50 text-green-600"
+                            : "text-gray-700 hover:bg-green-100"
                         }`
                       }
                     >
@@ -162,7 +143,7 @@ const DashboardLayout = () => {
           </nav>
 
           {/* Logout */}
-          <div className="p-4 border-t">
+          <div className="p-4 border-t border-green-400">
             <button
               onClick={handleSingOut}
               className="flex items-center gap-3 px-4 py-3 w-full cursor-pointer text-red-600 hover:bg-red-50 rounded-lg transition-colors"

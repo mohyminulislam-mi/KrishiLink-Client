@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const UpdateProfilePopup = ({ closeModal }) => {
   const { user, updateUserProfile } = useContext(AuthContext);

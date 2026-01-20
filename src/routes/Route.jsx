@@ -4,17 +4,17 @@ import Home from "../pages/home/Home";
 import Login from "../Auth/Login";
 import Registration from "../Auth/Registration";
 import ForgetPassword from "../Auth/ForgetPassword";
-import MyProfile from "../Auth/MyProfile";
 import NotFound from "../pages/NotFound";
 import AddCrop from "../pages/Crops/AddCrops";
 import AllCrops from "../pages/Crops/AllCrops";
-import MyInterests from "../pages/MyInterests";
+import MyInterests from "../Dashboard/User/MyInterests";
 import MyPosts from "../pages/MyPosts";
 import CropDetails from "../pages/Crops/CropsDetails";
 import PrivateRoute from "./PrivateRoute";
 import InterestTableData from "../components/InterestTableData";
 import DashboardLayout from "../layout/DashboardLayout";
 import Overview from "../Dashboard/Overview";
+import MyProfile from "../Dashboard/Profile/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -36,14 +36,6 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ForgetPassword></ForgetPassword>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-profile",
-        element: (
-          <PrivateRoute>
-            <MyProfile></MyProfile>
           </PrivateRoute>
         ),
       },
@@ -87,8 +79,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
-    children: [{ path: "/dashboard/my-interests", element: <MyInterests /> }],
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+
+    children: [
+      { path: "/dashboard", element: <MyProfile /> },
+      { path: "/dashboard/my-interests", element: <MyInterests /> },
+    ],
   },
 ]);
 

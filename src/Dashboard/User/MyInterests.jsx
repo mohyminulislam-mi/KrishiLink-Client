@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
-import Loading from "../loading/Loading";
+import { AuthContext } from "../../context/AuthContext";
+import Loading from "../../loading/Loading";
 
 const MyInterests = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +13,7 @@ const MyInterests = () => {
 
   useEffect(() => {
     fetch(
-      `https://krishi-link-server-eta.vercel.app/interests?email=${user?.email}`
+      `https://krishi-link-server-eta.vercel.app/interests?email=${user?.email}`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -32,6 +32,11 @@ const MyInterests = () => {
 
   return (
     <div className="w-11/12 mx-auto">
+      <title>Dashboard | My Interests</title>
+      <div className="my-12">
+        <h1 className="text-4xl font-bold"> My Interests</h1>
+      </div>
+
       <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm mt-6">
         <table className="min-w-full text-sm sm:text-base">
           <thead className="bg-green-500 text-white">
@@ -67,8 +72,8 @@ const MyInterests = () => {
                       crop.status === "pending"
                         ? "text-yellow-600"
                         : crop.status === "accepted"
-                        ? "text-green-600"
-                        : "text-red-600"
+                          ? "text-green-600"
+                          : "text-red-600"
                     }`}
                   >
                     {crop.status}

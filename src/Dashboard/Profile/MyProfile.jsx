@@ -1,16 +1,17 @@
 import { useState, useContext } from "react";
-import UpdateProfilePopup from "../components/UpdateProfilePopup";
-import { AuthContext } from "../context/AuthContext";
+import UpdateProfilePopup from "./UpdateProfilePopup";
+import { AuthContext } from "../../context/AuthContext";
 
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
-
   const [open, setOpen] = useState(false);
 
   return (
     <div className="py-14">
       <title>KrishiLink | My Profile</title>
+      <div className="mb-12">
+        <h1 className="text-4xl font-bold"> My Profile</h1>
+      </div>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto">
         <div className="card-body">
           <div className="mx-auto">
