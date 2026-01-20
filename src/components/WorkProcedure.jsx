@@ -29,7 +29,7 @@ const WorkProcedure = () => {
   ];
   return (
     <section className="bg-white py-12 px-6 md:px-20">
-      <h2 className="text-3xl font-bold text-center text-green-700 mb-10">
+      <h2 className="text-4xl font-bold text-center text-green-700 mb-10">
         How Organic Farming Works
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

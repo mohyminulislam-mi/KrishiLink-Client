@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaXTwitter } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import {
@@ -10,6 +10,9 @@ import {
 } from "react-icons/fa";
 
 const Contact = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -37,10 +40,6 @@ const Contact = () => {
       setSubmitting(false);
     }, 800);
   };
-
-    useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="min-h-[70vh]  py-16 px-4">
