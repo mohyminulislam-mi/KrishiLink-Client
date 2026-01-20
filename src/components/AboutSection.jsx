@@ -1,5 +1,6 @@
 import { div } from "motion/react-client";
 import React from "react";
+import { Link } from "react-router";
 
 const About = () => {
   return (
@@ -55,14 +56,17 @@ const About = () => {
             </div>
           </div>
 
-          <p className="mt-4">
+          <p className="my-4">
             Instead of a traditional e-commerce or buyer-seller model, this
             platform works as a social agro network, where everyone can interact
             directly.
           </p>
-          <button className="bg-green-600 text-white px-4 py-2 mt-4 rounded-full hover:bg-green-700 transition cursor-pointer">
+          <Link
+            to="/about"
+            className="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition cursor-pointer"
+          >
             Read More
-          </button>
+          </Link>
         </div>
       </div>
     </div>

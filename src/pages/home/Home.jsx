@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "../../components/Slider";
 import WorkProcedure from "../../components/WorkProcedure";
 import Blogs from "../../components/Blogs";
-import About from "../../components/About";
+import AboutSection from "../../components/AboutSection";
 import Testimonial from "../../components/Testimonial";
 import LatestCrops from "../../components/LatestCrops";
 
@@ -11,7 +11,7 @@ const Home = () => {
     <div>
       <Slider></Slider>
       {/* About */}
-      <About></About>
+      <AboutSection></AboutSection>
       {/* Latest Crop */}
       <LatestCrops></LatestCrops>
       {/* working procedure */}

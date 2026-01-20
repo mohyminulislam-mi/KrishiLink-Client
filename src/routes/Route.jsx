@@ -15,6 +15,8 @@ import InterestTableData from "../components/InterestTableData";
 import DashboardLayout from "../layout/DashboardLayout";
 import Overview from "../Dashboard/Overview";
 import MyProfile from "../Dashboard/Profile/MyProfile";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,8 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      { path: "/about", element: <About /> },
+      { path: "/contact", element: <Contact /> },
       {
         path: "/add-crops",
         element: (

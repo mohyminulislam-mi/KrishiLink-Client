@@ -39,6 +39,30 @@ const Header = () => {
       </li>
       <li>
         <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            `flex items-center gap-1 ${
+              isActive ? "text-green-600 font-semibold" : ""
+            }`
+          }
+        >
+          <PiPlantBold /> About
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            `flex items-center gap-1 ${
+              isActive ? "text-green-600 font-semibold" : ""
+            }`
+          }
+        >
+          <PiPlantBold /> Contact
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/all-crops"
           className={({ isActive }) =>
             `flex items-center gap-1 ${
