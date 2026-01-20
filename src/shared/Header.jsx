@@ -39,6 +39,18 @@ const Header = () => {
       </li>
       <li>
         <NavLink
+          to="/all-crops"
+          className={({ isActive }) =>
+            `flex items-center gap-1 ${
+              isActive ? "text-green-600 font-semibold" : ""
+            }`
+          }
+        >
+          <PiPlantBold /> All Crops
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/about"
           className={({ isActive }) =>
             `flex items-center gap-1 ${
@@ -61,55 +73,22 @@ const Header = () => {
           <PiPlantBold /> Contact
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/all-crops"
-          className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "text-green-600 font-semibold" : ""
-            }`
-          }
-        >
-          <PiPlantBold /> All Crops
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "text-green-600 font-semibold" : ""
-            }`
-          }
-        >
-          <HiMiniSquaresPlus /> Dashboard
-        </NavLink>
-      </li>
-
-      <li>
-        <NavLink
-          to="/add-crops"
-          className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "text-green-600 font-semibold" : ""
-            }`
-          }
-        >
-          <FaPenToSquare /> Add Crops
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/my-posts"
-          className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "text-green-600 font-semibold" : ""
-            }`
-          }
-        >
-          <TbCopyPlus /> My Posts
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                `flex items-center gap-1 ${
+                  isActive ? "text-green-600 font-semibold" : ""
+                }`
+              }
+            >
+              <HiMiniSquaresPlus /> Dashboard
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -180,7 +159,7 @@ const Header = () => {
             >
               <li>
                 <Link
-                  to="/my-profile"
+                  to="/dashboard"
                   className="font-bold flex items-center gap-1 justify-center hover:bg-green-50"
                 >
                   <CgProfile /> Profile

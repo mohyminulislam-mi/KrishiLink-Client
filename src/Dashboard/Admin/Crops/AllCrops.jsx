@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import AllCropData from "../../components/AllCropData";
-import SearchNotFound from "../../components/SearchNotFound";
-import Loading from "../../loading/Loading";
+import AllCropData from "../../../components/AllCropData";
+import SearchNotFound from "../../../components/SearchNotFound";
+import Loading from "../../../loading/Loading";
 
 const AllCrops = () => {
   const [crops, setCrops] = useState([]);

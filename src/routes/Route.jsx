@@ -5,11 +5,11 @@ import Login from "../Auth/Login";
 import Registration from "../Auth/Registration";
 import ForgetPassword from "../Auth/ForgetPassword";
 import NotFound from "../pages/NotFound";
-import AddCrop from "../pages/Crops/AddCrops";
-import AllCrops from "../pages/Crops/AllCrops";
+import AddCrop from "../Dashboard/Admin/Crops/AddCrops";
+import AllCrops from "../Dashboard/Admin/Crops/AllCrops";
 import MyInterests from "../Dashboard/User/MyInterests";
-import MyPosts from "../pages/MyPosts";
-import CropDetails from "../pages/Crops/CropsDetails";
+import MyPosts from "../Dashboard/Admin/MyPosts";
+import CropDetails from "../Dashboard/Admin/Crops/CropsDetails";
 import PrivateRoute from "./PrivateRoute";
 import InterestTableData from "../components/InterestTableData";
 import DashboardLayout from "../layout/DashboardLayout";
@@ -44,24 +44,8 @@ const router = createBrowserRouter([
       { path: "/about", element: <About /> },
       { path: "/contact", element: <Contact /> },
       {
-        path: "/add-crops",
-        element: (
-          <PrivateRoute>
-            <AddCrop></AddCrop>
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/all-crops",
         element: <AllCrops></AllCrops>,
-      },
-      {
-        path: "/my-posts",
-        element: (
-          <PrivateRoute>
-            <MyPosts></MyPosts>
-          </PrivateRoute>
-        ),
       },
       {
         path: "/interest-table ",
@@ -92,6 +76,8 @@ const router = createBrowserRouter([
     children: [
       { path: "/dashboard", element: <MyProfile /> },
       { path: "/dashboard/my-interests", element: <MyInterests /> },
+      { path: "/dashboard/add-crops", element: <AddCrop /> },
+      { path: "/dashboard/my-posts", element: <MyPosts /> },
     ],
   },
 ]);

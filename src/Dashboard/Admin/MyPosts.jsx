@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MdOutlineEditNote } from "react-icons/md";
 import { FaTrash } from "react-icons/fa6";
-import Loading from "../loading/Loading";
-import { AuthContext } from "../context/AuthContext";
-import UpdateCrop from "../pages/Crops/UpdateCrop";
+import Loading from "../../loading/Loading";
+import { AuthContext } from "../../context/AuthContext";
+import UpdateCrop from "../../Dashboard/Admin/Crops/UpdateCrop";
 import Swal from "sweetalert2";
 
 const MyPosts = () => {
@@ -18,7 +18,7 @@ const MyPosts = () => {
 
   useEffect(() => {
     fetch(
-      `https://krishi-link-server-eta.vercel.app/products?email=${user?.email}`
+      `https://krishi-link-server-eta.vercel.app/products?email=${user?.email}`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -49,7 +49,7 @@ const MyPosts = () => {
         `https://krishi-link-server-eta.vercel.app/products/${_id}`,
         {
           method: "DELETE",
-        }
+        },
       );
       const data = await res.json();
 
@@ -140,7 +140,9 @@ const MyPosts = () => {
           onClose={() => setSelectedCrop(null)}
           onUpdate={(updatedCrop) => {
             setProducts(
-              products.map((p) => (p._id === updatedCrop._id ? updatedCrop : p))
+              products.map((p) =>
+                p._id === updatedCrop._id ? updatedCrop : p,
+              ),
             );
             setSelectedCrop(null);
           }}

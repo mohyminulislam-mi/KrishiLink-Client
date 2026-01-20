@@ -1,10 +1,10 @@
 import { useParams } from "react-router";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../../context/AuthContext";
 import { BiSolidUserDetail } from "react-icons/bi";
 import Swal from "sweetalert2";
-import Loading from "../../loading/Loading";
-import InterestTableData from "../../components/InterestTableData";
+import Loading from "../../../loading/Loading";
+import InterestTableData from "../../../components/InterestTableData";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -33,7 +33,7 @@ const CropDetails = () => {
   // Load interests of this crop
   useEffect(() => {
     fetch(
-      `https://krishi-link-server-eta.vercel.app/all-interests/${crop?._id}`
+      `https://krishi-link-server-eta.vercel.app/all-interests/${crop?._id}`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -72,7 +72,7 @@ const CropDetails = () => {
             message,
             cropTitle: crop.name,
           }),
-        }
+        },
       );
 
       const data = await response.json();
