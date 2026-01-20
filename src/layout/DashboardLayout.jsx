@@ -5,7 +5,6 @@ import {
   ShoppingBag,
   Star,
   Heart,
-  ChefHat,
   Plus,
   Package,
   Users,
@@ -38,10 +37,10 @@ const DashboardLayout = () => {
     { path: "/dashboard/favorites", icon: Heart, label: "Favorite Meals" },
   ];
 
-  const chefMenuItems = [
+  const fermerMenuItems = [
     { path: "/", icon: House, label: "Home" },
     { path: "/dashboard", icon: UserRound, label: "My Profile" },
-    { path: "/dashboard/my-meals", icon: ChefHat, label: "My Meals" },
+    { path: "/dashboard/my-meals", icon: UserRound, label: "My Meals" },
     {
       path: "/dashboard/order-requests",
       icon: Package,
@@ -67,7 +66,7 @@ const DashboardLayout = () => {
   ];
 
   const getMenuItems = () => {
-    if (role === "chef") return chefMenuItems;
+    if (role === "fermer") return fermerMenuItems;
     if (role === "admin") return adminMenuItems;
     return userMenuItems;
   };
@@ -121,11 +120,11 @@ const DashboardLayout = () => {
           {/* Logo */}
           <div className="p-6 border-b">
             <h2 className="text-2xl font-bold text-gray-800">
-              {role === "chef"
-                ? "👨‍🍳 Chef"
+              {role === "fermer"
+                ? "fermer"
                 : role === "admin"
-                  ? "⚙️ Admin"
-                  : "🍽️ Food"}
+                  ? "Admin"
+                  : "User"}
             </h2>
             <p className="text-sm text-primary font-semibold mt-1">
               {user?.displayName || "Profile"}
