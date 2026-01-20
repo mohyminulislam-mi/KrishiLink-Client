@@ -49,47 +49,43 @@ const Header = () => {
           <PiPlantBold /> All Crops
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            `flex items-center gap-1 ${
+              isActive ? "text-green-600 font-semibold" : ""
+            }`
+          }
+        >
+          <HiMiniSquaresPlus /> Dashboard
+        </NavLink>
+      </li>
 
-      {user && (
-        <>
-          <li>
-            <NavLink
-              to="/add-crops"
-              className={({ isActive }) =>
-                `flex items-center gap-1 ${
-                  isActive ? "text-green-600 font-semibold" : ""
-                }`
-              }
-            >
-              <FaPenToSquare /> Add Crops
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/my-posts"
-              className={({ isActive }) =>
-                `flex items-center gap-1 ${
-                  isActive ? "text-green-600 font-semibold" : ""
-                }`
-              }
-            >
-              <TbCopyPlus /> My Posts
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/my-interests"
-              className={({ isActive }) =>
-                `flex items-center gap-1 ${
-                  isActive ? "text-green-600 font-semibold" : ""
-                }`
-              }
-            >
-              <HiMiniSquaresPlus /> My Interests
-            </NavLink>
-          </li>
-        </>
-      )}
+      <li>
+        <NavLink
+          to="/add-crops"
+          className={({ isActive }) =>
+            `flex items-center gap-1 ${
+              isActive ? "text-green-600 font-semibold" : ""
+            }`
+          }
+        >
+          <FaPenToSquare /> Add Crops
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/my-posts"
+          className={({ isActive }) =>
+            `flex items-center gap-1 ${
+              isActive ? "text-green-600 font-semibold" : ""
+            }`
+          }
+        >
+          <TbCopyPlus /> My Posts
+        </NavLink>
+      </li>
     </>
   );
 

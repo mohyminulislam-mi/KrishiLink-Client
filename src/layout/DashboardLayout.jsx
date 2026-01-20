@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import {
   Menu,
   X,
-  ShoppingBag,
-  Star,
-  Heart,
   Plus,
   Package,
   Users,
@@ -21,6 +18,7 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import useRole from "../hooks/useRole";
 import DashboardLogo from "../components/DashboardLogo";
+import { HiMiniSquaresPlus } from "react-icons/hi2";
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -32,9 +30,11 @@ const DashboardLayout = () => {
   const userMenuItems = [
     { path: "/", icon: House, label: "Home" },
     { path: "/dashboard", icon: UserRound, label: "My Profile" },
-    { path: "/dashboard/orders", icon: ShoppingBag, label: "My Orders" },
-    { path: "/dashboard/reviews", icon: Star, label: "My Reviews" },
-    { path: "/dashboard/favorites", icon: Heart, label: "Favorite Meals" },
+    {
+      path: "/dashboard/my-interests",
+      icon: HiMiniSquaresPlus,
+      label: "My Interests",
+    },
   ];
 
   const fermerMenuItems = [

@@ -60,14 +60,6 @@ const router = createBrowserRouter([
         element: <AllCrops></AllCrops>,
       },
       {
-        path: "/my-interests",
-        element: (
-          <PrivateRoute>
-            <MyInterests></MyInterests>
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/my-posts",
         element: (
           <PrivateRoute>
@@ -87,20 +79,16 @@ const router = createBrowserRouter([
         path: "/crop-details/:id",
         loader: ({ params }) =>
           fetch(
-            `https://krishi-link-server-eta.vercel.app/products/${params.id}`
+            `https://krishi-link-server-eta.vercel.app/products/${params.id}`,
           ),
-        element: (
-          <PrivateRoute>
-            <CropDetails></CropDetails>
-          </PrivateRoute>
-        ),
+        element: <CropDetails></CropDetails>,
       },
     ],
   },
   {
     path: "/dashboard",
     element: <DashboardLayout />,
-    children: [{ path: "/dashboard/overview", element: <Overview /> }],
+    children: [{ path: "/dashboard/my-interests", element: <MyInterests /> }],
   },
 ]);
 
