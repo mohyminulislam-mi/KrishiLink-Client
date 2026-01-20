@@ -13,6 +13,8 @@ import MyPosts from "../pages/MyPosts";
 import CropDetails from "../pages/Crops/CropsDetails";
 import PrivateRoute from "./PrivateRoute";
 import InterestTableData from "../components/InterestTableData";
+import DashboardLayout from "../layout/DashboardLayout";
+import Overview from "../Dashboard/Overview";
 
 const router = createBrowserRouter([
   {
@@ -94,6 +96,11 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [{ path: "/dashboard/overview", element: <Overview /> }],
   },
 ]);
 
