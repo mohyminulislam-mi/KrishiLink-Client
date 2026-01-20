@@ -49,7 +49,7 @@ const AddCrop = () => {
       .then((data) => {
         toast.success("Added successful!");
         e.target.reset();
-        navigate("/my-posts");
+        navigate("/dashboard/my-posts");
       });
   };
   return (

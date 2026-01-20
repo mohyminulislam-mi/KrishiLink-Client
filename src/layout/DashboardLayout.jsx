@@ -17,12 +17,12 @@ import Swal from "sweetalert2";
 import useRole from "../hooks/useRole";
 import DashboardLogo from "../components/DashboardLogo";
 import { HiMiniSquaresPlus } from "react-icons/hi2";
-import { FaPenToSquare } from "react-icons/fa6";
+import { FaChartLine, FaPenToSquare } from "react-icons/fa6";
 import { TbCopyPlus } from "react-icons/tb";
 
 const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { user, logOut } = useAuth();
+  const { user, singOutUser } = useAuth();
   const { role } = useRole();
   const navigate = useNavigate();
   const userMenuItems = [
@@ -38,19 +38,20 @@ const DashboardLayout = () => {
   const adminMenuItems = [
     { path: "/", icon: House, label: "Home" },
     { path: "/dashboard", icon: UserRound, label: "My Profile" },
+    { path: "/dashboard/overview", icon: FaChartLine, label: "Overview" },
     { path: "/dashboard/add-crops", icon: FaPenToSquare, label: "All Crops" },
     { path: "/dashboard/my-posts", icon: TbCopyPlus, label: "My Posts" },
     { path: "/dashboard/manage-users", icon: Users, label: "Manage Users" },
-    {
-      path: "/dashboard/manage-requests",
-      icon: FileText,
-      label: "Manage Requests",
-    },
-    {
-      path: "/dashboard/statistics",
-      icon: BarChart3,
-      label: "Platform Statistics",
-    },
+    // {
+    //   path: "/dashboard/manage-requests",
+    //   icon: FileText,
+    //   label: "Manage Requests",
+    // },
+    // {
+    //   path: "/dashboard/statistics",
+    //   icon: BarChart3,
+    //   label: "Platform Statistics",
+    // },
   ];
 
   const getMenuItems = () => {
@@ -69,7 +70,7 @@ const DashboardLayout = () => {
       confirmButtonText: "Logout",
     }).then((result) => {
       if (result.isConfirmed) {
-        logOut()
+        singOutUser()
           .then(() => {
             navigate("/");
           })

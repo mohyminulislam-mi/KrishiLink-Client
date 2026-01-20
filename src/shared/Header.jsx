@@ -5,10 +5,10 @@ import { AuthContext } from "../context/AuthContext";
 import { IoExitOutline, IoHome } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { PiPlantBold } from "react-icons/pi";
-import { FaPenToSquare } from "react-icons/fa6";
+import { LuBadgeInfo } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { HiMiniSquaresPlus } from "react-icons/hi2";
-import { TbCopyPlus } from "react-icons/tb";
+import { MdOutlineContactSupport } from "react-icons/md";
 
 const Header = () => {
   const { user, singOutUser } = useContext(AuthContext);
@@ -58,7 +58,7 @@ const Header = () => {
             }`
           }
         >
-          <PiPlantBold /> About
+          <LuBadgeInfo /> About
         </NavLink>
       </li>
       <li>
@@ -70,7 +70,7 @@ const Header = () => {
             }`
           }
         >
-          <PiPlantBold /> Contact
+          <MdOutlineContactSupport /> Contact
         </NavLink>
       </li>
       {user && (

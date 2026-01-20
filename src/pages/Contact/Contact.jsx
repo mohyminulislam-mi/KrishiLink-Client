@@ -38,6 +38,10 @@ const Contact = () => {
     }, 800);
   };
 
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-[70vh]  py-16 px-4">
       <h2 className="text-4xl font-bold text-center text-green-600 mb-10">

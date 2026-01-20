@@ -13,7 +13,7 @@ import CropDetails from "../Dashboard/Admin/Crops/CropsDetails";
 import PrivateRoute from "./PrivateRoute";
 import InterestTableData from "../components/InterestTableData";
 import DashboardLayout from "../layout/DashboardLayout";
-import Overview from "../Dashboard/Overview";
+import Overview from "../Dashboard/Admin/Overview";
 import MyProfile from "../Dashboard/Profile/MyProfile";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
@@ -78,6 +78,7 @@ const router = createBrowserRouter([
       { path: "/dashboard/my-interests", element: <MyInterests /> },
       { path: "/dashboard/add-crops", element: <AddCrop /> },
       { path: "/dashboard/my-posts", element: <MyPosts /> },
+      { path: "/dashboard/overview", element: <Overview /> },
     ],
   },
 ]);

@@ -102,13 +102,13 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3 text-green-700">Support</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/" className="hover:text-green-600">
-                FAQ
+              <Link to="/contact" className="hover:text-green-600">
+                Contact Us
               </Link>
             </li>
             <li>
               <Link to="/" className="hover:text-green-600">
-                Contact Us
+                FAQ
               </Link>
             </li>
             <li>
