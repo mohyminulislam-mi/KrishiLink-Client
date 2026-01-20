@@ -20,7 +20,6 @@ const useUser = () => {
   });
 
   return {
-    chefId: users?.chefId,
     users,
     isLoading,
     refetch,
